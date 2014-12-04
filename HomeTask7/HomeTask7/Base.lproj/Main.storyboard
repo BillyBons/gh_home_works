@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1R-xW-g9o">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gH-or-V0I" userLabel="Кнопка">
+                                        <rect key="frame" x="17" y="17" width="152" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label=""/>
+                                        <state key="normal" title="Please Select">
+                                            <color key="titleColor" red="0.91814811862244894" green="0.20033828310393914" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeValue" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MyQ-6w-Q49"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yes or No" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEC-zg-dbb">
+                                        <rect key="frame" x="247" y="21" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.39635271220000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="0.0" green="0.39635271223975765" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nfv-3x-yQZ">
+                                        <rect key="frame" x="32" y="66" width="123" height="29"/>
+                                        <segments>
+                                            <segment title="1"/>
+                                            <segment title="2"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.81827239372469629" blue="0.11671837288617198" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="mySegmentedControl:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ign-tz-2TC"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 or 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOc-cX-Qol">
+                                        <rect key="frame" x="262" y="69" width="55" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.39635271220000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3K1-xm-xHF">
+                                        <rect key="frame" x="25" y="133" width="144" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="myTextFieldChanged:" destination="vXZ-lx-hvc" eventType="editingChanged" id="xoz-rt-MDS"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFm-kM-fNc">
+                                        <rect key="frame" x="215" y="137" width="148" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.39635271220000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Kt-dZ-R4W">
+                                        <rect key="frame" x="69" y="250" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="mySwitch:" destination="vXZ-lx-hvc" eventType="valueChanged" id="dp7-II-vw8"/>
+                                        </connections>
+                                    </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7f-HL-FSX">
+                                        <rect key="frame" x="41" y="306" width="104" height="27"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" red="0.93349410076530615" green="0.16212789246965945" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="MyButtonActivityClick" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UsY-Hb-XgW"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Xt-pZ-QQc">
+                                        <rect key="frame" x="279" y="310" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="N1F-by-QDg">
+                                        <rect key="frame" x="46" y="367" width="94" height="29"/>
+                                        <color key="tintColor" red="0.0" green="0.71938775510204089" blue="0.0075535532618809451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="myStepperChange" destination="vXZ-lx-hvc" eventType="valueChanged" id="1Vh-tD-aSE"/>
+                                        </connections>
+                                    </stepper>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxT-j3-8Ps">
+                                        <rect key="frame" x="242" y="371" width="95" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.39635271220000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vN3-gI-efM">
+                                        <rect key="frame" x="23" y="192" width="148" height="31"/>
+                                        <connections>
+                                            <action selector="mySliderValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="z94-TN-YwK"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-Yi-oio">
+                                        <rect key="frame" x="29" y="477" width="129" height="30"/>
+                                        <state key="normal" title="Show the picture">
+                                            <color key="titleColor" red="0.91814811860000001" green="0.20033828309999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="myPictureButtonClick" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Acp-Gz-qPZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQj-az-HTF">
+                                        <rect key="frame" x="268" y="196" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.39635271220000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kqa-uB-KxL">
+                                        <rect key="frame" x="169" y="418" width="168" height="148"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="MyButtonActivity" destination="C7f-HL-FSX" id="ESP-b1-EMU"/>
+                        <outlet property="myActivityIndicator" destination="3Xt-pZ-QQc" id="gj0-S7-lG1"/>
+                        <outlet property="myButton" destination="8gH-or-V0I" id="LUc-Yg-GYl"/>
+                        <outlet property="myImage" destination="Kqa-uB-KxL" id="WiG-Fw-YJB"/>
+                        <outlet property="myLabelButton" destination="ZEC-zg-dbb" id="F9N-rY-4eo"/>
+                        <outlet property="myLabelSegmentedControl" destination="hOc-cX-Qol" id="Drv-VA-5fk"/>
+                        <outlet property="myLabelTextField" destination="gFm-kM-fNc" id="H9p-8e-IS6"/>
+                        <outlet property="myPictureButton" destination="RkK-Yi-oio" id="kFl-Ur-rDW"/>
+                        <outlet property="mySegmentedControl" destination="nfv-3x-yQZ" id="5OP-04-Vyh"/>
+                        <outlet property="mySlider" destination="vN3-gI-efM" id="aHc-qd-6zZ"/>
+                        <outlet property="mySliderLabel" destination="dQj-az-HTF" id="UIk-3M-47j"/>
+                        <outlet property="myStepper" destination="N1F-by-QDg" id="2dl-VJ-3t7"/>
+                        <outlet property="myStepperLabel" destination="xxT-j3-8Ps" id="9ZO-Lg-LrY"/>
+                        <outlet property="myTextField" destination="3K1-xm-xHF" id="MJv-YC-vl9"/>
+                        <outlet property="scroll" destination="I1R-xW-g9o" id="b86-Zx-du7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
