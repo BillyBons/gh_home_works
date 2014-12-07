@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VUI-HV-lOI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.0029806442111577664" green="0.61933169157608692" blue="0.15706840605239006" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="BdE-NA-PgC"/>
+                                    <constraint firstAttribute="width" constant="600" id="trp-Eh-wkd"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="CU7-Cs-7hL">
+                                    <size key="itemSize" width="600" height="600"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qgx-am-gCv">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="WvW-t0-EE1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uqU-AE-D0S"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vZB-T7-u1e">
+                                <rect key="frame" x="281" y="473" width="39" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="6uC-wV-Jsp"/>
+                                    <constraint firstAttribute="width" constant="39" id="feF-9q-7H4"/>
+                                </constraints>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNd-Fv-4lj">
+                                <rect key="frame" x="328" y="508" width="101" height="30"/>
+                                <color key="backgroundColor" red="0.28164884957968517" green="0.8287564041686668" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="nGq-B4-gbe"/>
+                                </constraints>
+                                <state key="normal" title="Registration">
+                                    <color key="titleColor" red="0.0" green="0.25830352687689428" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXt-9a-8jw">
+                                <rect key="frame" x="201" y="508" width="72" height="30"/>
+                                <color key="backgroundColor" red="0.28164884957968517" green="0.8287564041686668" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="SAA-Oc-mJs"/>
+                                </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.0" green="0.25830352687689428" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.086957476899999997" green="0.88769176510000003" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VUI-HV-lOI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Sf-c3-qln"/>
+                            <constraint firstItem="SNd-Fv-4lj" firstAttribute="baseline" secondItem="NXt-9a-8jw" secondAttribute="baseline" id="5lu-1n-WHe"/>
+                            <constraint firstItem="vZB-T7-u1e" firstAttribute="leading" secondItem="NXt-9a-8jw" secondAttribute="trailing" constant="8" symbolic="YES" id="BLQ-Aj-ALP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vZB-T7-u1e" secondAttribute="bottom" constant="90" id="SBH-hg-QWZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NXt-9a-8jw" secondAttribute="bottom" constant="62" id="TCB-6I-ont"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VUI-HV-lOI" secondAttribute="bottom" id="V0T-oT-MX3"/>
+                            <constraint firstAttribute="trailing" secondItem="VUI-HV-lOI" secondAttribute="trailing" id="ZYc-cZ-twB"/>
+                            <constraint firstAttribute="centerX" secondItem="vZB-T7-u1e" secondAttribute="centerX" id="bbP-8c-Xyi"/>
+                            <constraint firstItem="SNd-Fv-4lj" firstAttribute="leading" secondItem="vZB-T7-u1e" secondAttribute="trailing" constant="8" symbolic="YES" id="e4k-Jc-Tk5"/>
+                            <constraint firstItem="VUI-HV-lOI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="s4F-VZ-cly"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myCollectionView" destination="VUI-HV-lOI" id="hGZ-6r-Yhe"/>
+                        <outlet property="myLoginButton" destination="NXt-9a-8jw" id="L1g-bK-jce"/>
+                        <outlet property="myPageControl" destination="vZB-T7-u1e" id="ktf-Ah-UOK"/>
+                        <outlet property="myRegistrationButton" destination="SNd-Fv-4lj" id="nYi-sv-Vqp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
