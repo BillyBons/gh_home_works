@@ -18,12 +18,19 @@
 
 @property (strong) NSManagedObject *editedTask;
 
+@property (strong) NSManagedObject *completeTask;
+
 - (IBAction)changingTask:(id)sender;
 
 
 - (IBAction)cancel:(id)sender;
 
 - (IBAction)save:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UISwitch *TaskSwitch;
+
+
+- (IBAction)ComletedTaskSwitch:(id)sender;
 
 
 @end

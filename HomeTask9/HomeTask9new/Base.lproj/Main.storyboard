@@ -32,24 +32,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zWO-RX-pg9">
-                                <rect key="frame" x="163" y="285" width="274" height="30"/>
+                                <rect key="frame" x="163" y="189" width="274" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hvr-f6-3v5"/>
                                     <constraint firstAttribute="width" constant="274" id="soH-qc-inX"/>
                                 </constraints>
-                                <color key="textColor" red="0.86680536684782605" green="0.0" blue="0.051030198376736322" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="changingTask:" destination="JEX-9P-axG" eventType="editingChanged" id="v0R-xO-LeU"/>
                                 </connections>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W5c-kQ-mtJ">
+                                <rect key="frame" x="276" y="362" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="WfZ-Fj-hft"/>
+                                    <constraint firstAttribute="height" constant="31" id="e2x-OD-T74"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="ComletedTaskSwitch:" destination="JEX-9P-axG" eventType="valueChanged" id="9i0-BB-C2q"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task complete switch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-12-mHf">
+                                <rect key="frame" x="215" y="322" width="170" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="t2q-N9-DMJ"/>
+                                    <constraint firstAttribute="height" constant="21" id="xEV-6C-f4J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit task here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3H-Ah-wRe">
+                                <rect key="frame" x="247" y="124" width="106" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="YRW-sp-lGA"/>
+                                    <constraint firstAttribute="height" constant="21" id="chu-aZ-xGy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="W5c-kQ-mtJ" secondAttribute="centerY" constant="-77.5" id="1uH-QU-Fbd"/>
                             <constraint firstAttribute="centerX" secondItem="zWO-RX-pg9" secondAttribute="centerX" id="9LX-U1-VlD"/>
+                            <constraint firstAttribute="centerX" secondItem="QWF-12-mHf" secondAttribute="centerX" id="J6e-SA-KF4"/>
+                            <constraint firstAttribute="centerX" secondItem="W5c-kQ-mtJ" secondAttribute="centerX" id="Jxn-cI-cxZ"/>
+                            <constraint firstAttribute="centerY" secondItem="QWF-12-mHf" secondAttribute="centerY" constant="-43.5" id="OPR-Aw-TUP"/>
+                            <constraint firstAttribute="centerX" secondItem="zWO-RX-pg9" secondAttribute="centerX" id="Pjt-2V-0xV"/>
                             <constraint firstAttribute="centerY" secondItem="zWO-RX-pg9" secondAttribute="centerY" id="QAf-fR-aMh"/>
+                            <constraint firstAttribute="centerY" secondItem="f3H-Ah-wRe" secondAttribute="centerY" constant="165.5" id="QSb-2a-c6d"/>
+                            <constraint firstAttribute="centerY" secondItem="QWF-12-mHf" secondAttribute="centerY" constant="-38.5" id="euc-k4-PYC"/>
+                            <constraint firstAttribute="centerX" secondItem="f3H-Ah-wRe" secondAttribute="centerX" id="f5G-aQ-TwU"/>
+                            <constraint firstAttribute="centerX" secondItem="QWF-12-mHf" secondAttribute="centerX" id="f9J-Vj-CAS"/>
+                            <constraint firstItem="zWO-RX-pg9" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="125" id="hUi-wC-InX"/>
+                            <constraint firstAttribute="centerY" secondItem="f3H-Ah-wRe" secondAttribute="centerY" constant="165.5" id="qzx-Zq-wxm"/>
+                            <constraint firstAttribute="centerY" secondItem="zWO-RX-pg9" secondAttribute="centerY" constant="96" id="xUR-sK-IqS"/>
+                            <constraint firstItem="W5c-kQ-mtJ" firstAttribute="top" secondItem="QWF-12-mHf" secondAttribute="bottom" constant="19" id="yTo-zQ-Raj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QAf-fR-aMh"/>
+                                <exclude reference="xUR-sK-IqS"/>
+                                <exclude reference="OPR-Aw-TUP"/>
+                                <exclude reference="euc-k4-PYC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit task" id="mOI-FS-AaM">
@@ -79,6 +129,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="TaskSwitch" destination="W5c-kQ-mtJ" id="eYm-6G-dMa"/>
                         <outlet property="editTask" destination="zWO-RX-pg9" id="nPP-Ys-KoZ"/>
                     </connections>
                 </viewController>

@@ -15,11 +15,12 @@
 
 @implementation MasterViewController
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
-        self.preferredContentSize = CGSizeMake(320.0, 600.0);
+        self.preferredContentSize = CGSizeMake(320.0, 480.0);
     }
 }
 
@@ -46,7 +47,7 @@
     
     
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"New Task"
-                                                 message:@"Enter a name for task"
+                                                 message:@"Enter name for task"
                                                 delegate:self
                                        cancelButtonTitle:@"Cancel"
                                        otherButtonTitles:@"Done", nil];
@@ -61,11 +62,14 @@
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1){
         NSString *taskString = [alertView textFieldAtIndex:0].text;
+        NSString *completedString = @"0";
+        
         if (![taskString isEqualToString:@""]){
             NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
             NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
             [newManagedObject setValue:taskString forKey:@"todo"];
+            [newManagedObject setValue:completedString forKey:@"completed"];
             [self saveContext];
             
         }
@@ -74,7 +78,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   
     
     
     
@@ -130,6 +133,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -158,6 +162,18 @@
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"todo"] description];
     cell.detailTextLabel.text = [[object valueForKey:@"timeStamp"] description];
+    
+    NSString *stringForCopleteValue;
+    stringForCopleteValue = [[object valueForKey:@"completed"] description];
+    //NSLog(@"В ячейке %@", stringForCopleteValue);
+    if ([stringForCopleteValue isEqualToString:@"1"]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else if ([stringForCopleteValue isEqualToString:@"0"]){
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    
 }
 
 #pragma mark - Fetched results controller

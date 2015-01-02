@@ -19,6 +19,8 @@
 
 @synthesize editedTask;
 
+@synthesize TaskSwitch;
+
 NSString *task;
 
 
@@ -54,11 +56,22 @@ NSString *task;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSString *completeTask;
+    completeTask = [self.editedTask valueForKey:@"completed"];
+    if ([completeTask isEqualToString:@"1"]) {
+        [TaskSwitch setOn:YES animated:YES];
+    }
+    else if ([completeTask isEqualToString:@"0"]){
+        [TaskSwitch setOn:NO animated:YES];
+    }
+    //[TaskSwitch setOn:NO animated:YES];
     if(self.editedTask) {
         [self.editTask setText:[self.editedTask valueForKey:@"todo"]];
         task = [self.editedTask valueForKey:@"todo"];
     }
+    
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
     //[self configureView];
 }
@@ -98,4 +111,21 @@ NSString *task;
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+- (IBAction)ComletedTaskSwitch:(id)sender {
+    NSString *completedValue;
+    completedValue = [self.editedTask valueForKey:@"completed"];
+    
+    if ([completedValue isEqualToString:@"1"]) {
+        
+        [self.editedTask setValue:@"0" forKey:@"completed"];
+    }
+    else if ([completedValue isEqualToString:@"0"]){
+        
+    [self.editedTask setValue:@"1" forKey:@"completed"];
+    }
+ }
+
+
+
 @end
