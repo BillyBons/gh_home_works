@@ -159,7 +159,4 @@ NSArray *arrayCarrencys;
     
 }
 
-- (IBAction)EditingResultText:(id)sender {
-    [resultText addTarget:self action:@selector(textFieldShouldEndEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
-}
 @end

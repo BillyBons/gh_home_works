@@ -33,7 +33,6 @@
 - (IBAction)convertComplite:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextField *resultText;
-- (IBAction)EditingResultText:(id)sender;
 
 @property NSArray *PickerDatasource;
 
