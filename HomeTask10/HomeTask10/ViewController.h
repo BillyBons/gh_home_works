@@ -10,19 +10,19 @@
 
 @interface ViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *rubuahLabel;
+@property (strong, nonatomic) IBOutlet UILabel *rubUahLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *euruahLabel;
+@property (strong, nonatomic) IBOutlet UILabel *eurUahLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *usduahLabel;
+@property (strong, nonatomic) IBOutlet UILabel *usdUahLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *uahrubLabel;
+@property (strong, nonatomic) IBOutlet UILabel *uahRubLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *uaheurLabel;
+@property (strong, nonatomic) IBOutlet UILabel *uahEurLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *uahusdLabel;
+@property (strong, nonatomic) IBOutlet UILabel *uahUsdLabel;
 
-@property (strong, nonatomic) IBOutlet UIPickerView *leftPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
 
 @property (strong, nonatomic) IBOutlet UITextField *inputText;
 
@@ -30,11 +30,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *convertButton;
 
-- (IBAction)convertComplite:(id)sender;
+- (IBAction)convertComplete:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextField *resultText;
 
-@property NSArray *PickerDatasource;
+@property NSArray *pickerDataSource;
 
 @end
 

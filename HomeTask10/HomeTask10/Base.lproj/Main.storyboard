@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RUB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVc-JC-FPP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVc-JC-FPP">
                                 <rect key="frame" x="41" y="105" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Покупка" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYo-oe-8mX">
-                                <rect key="frame" x="153" y="77" width="74" height="21"/>
+                                <rect key="frame" x="154" y="78" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                 <color key="textColor" red="0.32512895850000001" green="0.84413213320000002" blue="0.2255432037" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,19 +71,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uahrub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-uz-qyZ">
-                                <rect key="frame" x="248" y="104" width="71" height="21"/>
+                                <rect key="frame" x="248" y="105" width="71" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25830352690000002" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uaheur" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdK-Oi-D9J">
-                                <rect key="frame" x="247" y="138" width="74" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.25830352690000002" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uahusd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulv-EV-lOK">
-                                <rect key="frame" x="246" y="172" width="75" height="21"/>
+                                <rect key="frame" x="246" y="138" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.25830352690000002" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +101,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="convertComplite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3M-Uo-82F"/>
+                                    <action selector="convertComplete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oud-0i-iAi"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DZm-YX-qnM">
@@ -123,20 +117,26 @@
                                     <action selector="inputTextchanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="gBt-hW-LBy"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uahusd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulv-EV-lOK">
+                                <rect key="frame" x="246" y="172" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.25830352690000002" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="convertButton" destination="DE2-Vh-NXa" id="QDx-n4-UKQ"/>
-                        <outlet property="euruahLabel" destination="mQk-92-tPf" id="AGt-Gr-5WM"/>
+                        <outlet property="eurUahLabel" destination="mQk-92-tPf" id="zlE-zf-bwY"/>
                         <outlet property="inputText" destination="BoC-hp-D1b" id="R5J-L6-xvu"/>
-                        <outlet property="leftPicker" destination="Nyd-Wf-RDR" id="0Sr-Q9-PIj"/>
+                        <outlet property="myPicker" destination="Nyd-Wf-RDR" id="0aI-ic-q3q"/>
                         <outlet property="resultText" destination="DZm-YX-qnM" id="iih-2t-s1Z"/>
-                        <outlet property="rubuahLabel" destination="axX-42-8dc" id="2uF-tz-7pp"/>
-                        <outlet property="uaheurLabel" destination="GdK-Oi-D9J" id="YHL-G6-aPx"/>
-                        <outlet property="uahrubLabel" destination="1sy-uz-qyZ" id="uHt-9a-sV9"/>
-                        <outlet property="uahusdLabel" destination="Ulv-EV-lOK" id="ynf-Yx-uCe"/>
-                        <outlet property="usduahLabel" destination="xWy-aB-Yg5" id="I0c-gk-EmE"/>
+                        <outlet property="rubUahLabel" destination="axX-42-8dc" id="aYq-9O-2C9"/>
+                        <outlet property="uahEurLabel" destination="GdK-Oi-D9J" id="u3D-yb-RAG"/>
+                        <outlet property="uahRubLabel" destination="1sy-uz-qyZ" id="w9m-B9-uER"/>
+                        <outlet property="uahUsdLabel" destination="Ulv-EV-lOK" id="DoA-gj-8M1"/>
+                        <outlet property="usdUahLabel" destination="xWy-aB-Yg5" id="7dd-Wp-H2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

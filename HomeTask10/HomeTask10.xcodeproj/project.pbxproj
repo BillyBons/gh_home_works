@@ -15,6 +15,7 @@
 		84207F3B1A6AAD2000F76729 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84207F3A1A6AAD2000F76729 /* Images.xcassets */; };
 		84207F3E1A6AAD2000F76729 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84207F3C1A6AAD2000F76729 /* LaunchScreen.xib */; };
 		84207F4A1A6AAD2000F76729 /* HomeTask10Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84207F491A6AAD2000F76729 /* HomeTask10Tests.m */; };
+		84AB73331A73E1BD00862D50 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB73321A73E1BD00862D50 /* Currency.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		84207F431A6AAD2000F76729 /* HomeTask10Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeTask10Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84207F481A6AAD2000F76729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84207F491A6AAD2000F76729 /* HomeTask10Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTask10Tests.m; sourceTree = "<group>"; };
+		84AB73311A73E1BD00862D50 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		84AB73321A73E1BD00862D50 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 		84207F291A6AAD2000F76729 /* HomeTask10 */ = {
 			isa = PBXGroup;
 			children = (
+				84AB73311A73E1BD00862D50 /* Currency.h */,
+				84AB73321A73E1BD00862D50 /* Currency.m */,
 				84207F2E1A6AAD2000F76729 /* AppDelegate.h */,
 				84207F2F1A6AAD2000F76729 /* AppDelegate.m */,
 				84207F341A6AAD2000F76729 /* ViewController.h */,
@@ -226,6 +231,7 @@
 				84207F331A6AAD2000F76729 /* HomeTask10.xcdatamodeld in Sources */,
 				84207F361A6AAD2000F76729 /* ViewController.m in Sources */,
 				84207F2D1A6AAD2000F76729 /* main.m in Sources */,
+				84AB73331A73E1BD00862D50 /* Currency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +424,7 @@
 				84207F4F1A6AAD2000F76729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84207F501A6AAD2000F76729 /* Build configuration list for PBXNativeTarget "HomeTask10Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +433,7 @@
 				84207F521A6AAD2000F76729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
