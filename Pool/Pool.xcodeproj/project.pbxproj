@@ -21,6 +21,7 @@
 		847E626A1AAA040200232A75 /* ball_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 847E62661AAA040200232A75 /* ball_white.png */; };
 		847E626B1AAA040200232A75 /* ball_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 847E62671AAA040200232A75 /* ball_yellow.png */; };
 		847E626D1AAA04FD00232A75 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 847E626C1AAA04FD00232A75 /* bg.png */; };
+		84CF140A1AAB8F9600797745 /* Cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF14091AAB8F9600797745 /* Cue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		847E62661AAA040200232A75 /* ball_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball_white.png; sourceTree = "<group>"; };
 		847E62671AAA040200232A75 /* ball_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball_yellow.png; sourceTree = "<group>"; };
 		847E626C1AAA04FD00232A75 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		84CF14091AAB8F9600797745 /* Cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		847E62631AAA03CC00232A75 /* PoolImages */ = {
 			isa = PBXGroup;
 			children = (
+				84CF14091AAB8F9600797745 /* Cue.png */,
 				847E626C1AAA04FD00232A75 /* bg.png */,
 				847E62641AAA040200232A75 /* ball_green.png */,
 				847E62651AAA040200232A75 /* ball_red.png */,
@@ -233,6 +236,7 @@
 				847E626B1AAA040200232A75 /* ball_yellow.png in Resources */,
 				847E624E1AA9FE7000232A75 /* LaunchScreen.xib in Resources */,
 				847E626A1AAA040200232A75 /* ball_white.png in Resources */,
+				84CF140A1AAB8F9600797745 /* Cue.png in Resources */,
 				847E624B1AA9FE7000232A75 /* Images.xcassets in Resources */,
 				847E626D1AAA04FD00232A75 /* bg.png in Resources */,
 				847E62691AAA040200232A75 /* ball_red.png in Resources */,
@@ -450,6 +454,7 @@
 				847E625F1AA9FE7000232A75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		847E62601AA9FE7000232A75 /* Build configuration list for PBXNativeTarget "PoolTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +463,7 @@
 				847E62621AA9FE7000232A75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
