@@ -8,16 +8,19 @@
 
 #import "GameScene.h"
 
-static const uint32_t ballCategory = 0x1 << 1;
+static const uint32_t ballCategory = 0x1 << 0;
 
 static const uint32_t cueCategory = 0x1 << 1;
+
+static const uint32_t borderCategory = 0x1 << 2;
 
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
     self.physicsWorld.contactDelegate = self;
-    [self initWithSize:CGSizeMake(540, 320)];
+    
+    //[self initWithSize:CGSizeMake(568, 320)];
     
     [self BouncingBall];
     
@@ -25,8 +28,34 @@ static const uint32_t cueCategory = 0x1 << 1;
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-    NSLog(@"BOOM");
+    // 1 Create local variables for two physics bodies
+    SKPhysicsBody *firstBody;
+    SKPhysicsBody *secondBody;
+    // 2 Assign the two physics bodies so that the one with the lower category is always stored in firstBody
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    } else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    // 3 react to the contact between ball and bottom
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == borderCategory) {
+        NSLog(@"Hit border!!!");
+        [self runAction:[SKAction playSoundFileNamed:@"Bank02.wav" waitForCompletion:NO]];
+    }
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == cueCategory) {
+        NSLog(@"Hit cue!!!");
+        [self runAction:[SKAction playSoundFileNamed:@"Shot01.wav" waitForCompletion:NO]];
+    }
+    
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == ballCategory) {
+        NSLog(@"Hit ball!!!");
+        [self runAction:[SKAction playSoundFileNamed:@"Hit04.wav" waitForCompletion:NO]];
+    }
+    
 }
+
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -42,7 +71,7 @@ static const uint32_t cueCategory = 0x1 << 1;
     /* Called when a touch begins */
     UITouch* touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInNode:self];
-    //NSLog(@"touch x = %f,  touch y = %f,",touchLocation.x, touchLocation.y);
+    NSLog(@"touch x = %f,  touch y = %f,",touchLocation.x, touchLocation.y);
     SKPhysicsBody* body = [self.physicsWorld bodyAtPoint:touchLocation];
     if (body && [body.node.name isEqualToString: @"Cue"]) {
         NSLog(@"Began touch on cue");
@@ -58,18 +87,16 @@ static const uint32_t cueCategory = 0x1 << 1;
         
         UITouch* touch = [touches anyObject];
         CGPoint touchLocation = [touch locationInNode:self];
-        CGPoint previousLocation = [touch previousLocationInNode:self];
+        
         // 3 Get node for cue
         SKShapeNode* cue = (SKShapeNode*)[self childNodeWithName: @"Cue"];
        
         // 4 Calculate new position along x for cue
-        int cueX = cue.position.x + (touchLocation.x - previousLocation.x);
-        int cueY = cue.position.y + (previousLocation.y - touchLocation.y);
-        //NSLog(@"Cue x = %d,  Cue y = %d,",cueX, cueY);
-        // 5 Limit x so that the cue will not leave the screen to left or right
-        //cueX = MAX(cueX, cue.size.width/2);
-        //cueX = MIN(cueX, self.size.width - cue.size.width/2);
-        // 6 Update position of cue
+        int cueX = touchLocation.x;
+        
+        int cueY = touchLocation.y;
+        
+      
         cue.position = CGPointMake(cueX, cueY);
     }}
 
@@ -82,34 +109,32 @@ static const uint32_t cueCategory = 0x1 << 1;
     SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     // 2 Set physicsBody of scene to borderBody
     self.physicsBody = borderBody;
+    self.physicsBody.categoryBitMask = borderCategory;
+    self.physicsBody.contactTestBitMask = ballCategory;
     // 3 Set the friction of that physicsBody to 0
     self.physicsBody.friction = 0.0f;
+    
+    
     
     SKSpriteNode* ball = [SKSpriteNode spriteNodeWithImageNamed: @"ball_white.png"];
     ball.name = @"ball";
     ball.position = CGPointMake(self.frame.size.width/3, self.frame.size.height/2);
     
-    SKPhysicsBody *ball1 = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
-    [ball setPhysicsBody:ball1];
-    
+    ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
     ball.physicsBody.friction = 0.1f;
     ball.physicsBody.restitution = 1.0f;
     ball.physicsBody.linearDamping = 0.1f;
     ball.physicsBody.allowsRotation = NO;
     
+    ball.physicsBody.categoryBitMask = ballCategory;
+    ball.physicsBody.contactTestBitMask = ballCategory;
+    //ball.physicsBody.collisionBitMask = borderCategory;
     
-    ball1.categoryBitMask = ballCategory;
-    ball1.collisionBitMask = cueCategory;
-    ball1.contactTestBitMask = cueCategory;
-    
+
     [self addChild:ball];
-    //ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
-   
+
     
-    
-    
-    
-    [ball.physicsBody applyImpulse:CGVectorMake(10.0f, 0.3f)];
+    [ball.physicsBody applyImpulse:CGVectorMake(20.0f, 1.5f)];
     
     
     SKSpriteNode* ball2 = [SKSpriteNode spriteNodeWithImageNamed: @"ball_green.png"];
@@ -121,8 +146,9 @@ static const uint32_t cueCategory = 0x1 << 1;
     ball2.physicsBody.restitution = 1.0f;
     ball2.physicsBody.linearDamping = 0.1f;
     ball2.physicsBody.allowsRotation = NO;
-    
-    [ball2.physicsBody applyImpulse:CGVectorMake(20.0f, 5.0f)];
+    ball2.physicsBody.categoryBitMask = ballCategory;
+    ball2.physicsBody.contactTestBitMask = ballCategory;
+    //ball2.physicsBody.collisionBitMask = borderCategory;
     
     SKSpriteNode* ball3 = [SKSpriteNode spriteNodeWithImageNamed: @"ball_red.png"];
     ball3.name = @"ball3";
@@ -133,7 +159,9 @@ static const uint32_t cueCategory = 0x1 << 1;
     ball3.physicsBody.restitution = 1.0f;
     ball3.physicsBody.linearDamping = 0.1f;
     ball3.physicsBody.allowsRotation = NO;
-    
+    ball3.physicsBody.categoryBitMask = ballCategory;
+    ball3.physicsBody.contactTestBitMask = ballCategory;
+    //ball3.physicsBody.collisionBitMask = borderCategory;
     
     SKSpriteNode* ball4 = [SKSpriteNode spriteNodeWithImageNamed: @"ball_yellow.png"];
     ball4.name = @"ball4";
@@ -144,27 +172,24 @@ static const uint32_t cueCategory = 0x1 << 1;
     ball4.physicsBody.restitution = 1.0f;
     ball4.physicsBody.linearDamping = 0.1f;
     ball4.physicsBody.allowsRotation = NO;
-    
+    ball4.physicsBody.categoryBitMask = ballCategory;
+    ball4.physicsBody.contactTestBitMask = ballCategory;
+    //ball4.physicsBody.collisionBitMask = borderCategory;
     
     SKSpriteNode *cue = [SKSpriteNode spriteNodeWithImageNamed: @"Cue.png"];
     cue.name = @"Cue";
     cue.position = CGPointMake(10, self.frame.size.height/2);
     cue.physicsBody.restitution = 0.9f;
     cue.physicsBody.friction = 0.4f;
+    cue.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:cue.frame.size];
+    cue.physicsBody.dynamic = NO;
+    
+    cue.physicsBody.categoryBitMask = cueCategory;
+    cue.physicsBody.contactTestBitMask = ballCategory;
+    cue.physicsBody.collisionBitMask = ballCategory;
    
-    SKPhysicsBody *cue2 = [SKPhysicsBody bodyWithRectangleOfSize:cue.frame.size];
-    [cue setPhysicsBody:cue2];
-    
-    [cue2 setDynamic:NO];
-    cue2.categoryBitMask = cueCategory;
-    cue2.collisionBitMask = ballCategory;
-    cue2.contactTestBitMask = ballCategory;
-    
-    [cue runAction:[SKAction repeatActionForever:[SKAction rotateByAngle: (-2*M_PI) duration:10]]];
-    
     [self addChild:cue];
-    //cue.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:cue.frame.size];
-    
+
     //cue.physicsBody.dynamic = NO;
     //SKPhysicsJointSpring *cueBall = [SKPhysicsJointSpring jointWithBodyA:cue2 bodyB:ball1 anchorA:CGPointMake(10, self.frame.size.height/2) anchorB:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
     //SKPhysicsJointPin *cueBall2 = [SKPhysicsJointPin jointWithBodyA:cue2 bodyB:ball1 anchor:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
