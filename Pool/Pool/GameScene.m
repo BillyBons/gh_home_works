@@ -31,6 +31,9 @@ static const uint32_t borderCategory = 0x1 << 2;
     // 1 Create local variables for two physics bodies
     SKPhysicsBody *firstBody;
     SKPhysicsBody *secondBody;
+    
+    NSLog(@"Contact point x = %f, y = %f", contact.contactPoint.x, contact.contactPoint.y);
+    
     // 2 Assign the two physics bodies so that the one with the lower category is always stored in firstBody
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
         firstBody = contact.bodyA;
@@ -39,14 +42,23 @@ static const uint32_t borderCategory = 0x1 << 2;
         firstBody = contact.bodyB;
         secondBody = contact.bodyA;
     }
-    // 3 react to the contact between ball and bottom
+    
     if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == borderCategory) {
         NSLog(@"Hit border!!!");
         [self runAction:[SKAction playSoundFileNamed:@"Bank02.wav" waitForCompletion:NO]];
     }
     if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == cueCategory) {
-        NSLog(@"Hit cue!!!");
+       
+        
+        
         [self runAction:[SKAction playSoundFileNamed:@"Shot01.wav" waitForCompletion:NO]];
+        
+        if ([firstBody.node.name isEqualToString:@"ball"]){
+        SKShapeNode* ball = (SKShapeNode*)[self childNodeWithName: @"ball"];
+        [ball.physicsBody applyImpulse:CGVectorMake(20.0f, 1.0f)];
+        [secondBody.node removeFromParent];
+        }
+        
     }
     
     if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == ballCategory) {
@@ -91,13 +103,12 @@ static const uint32_t borderCategory = 0x1 << 2;
         // 3 Get node for cue
         SKShapeNode* cue = (SKShapeNode*)[self childNodeWithName: @"Cue"];
        
+        
         // 4 Calculate new position along x for cue
         int cueX = touchLocation.x;
-        
         int cueY = touchLocation.y;
-        
-      
         cue.position = CGPointMake(cueX, cueY);
+        
     }}
 
 -(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event{
@@ -119,9 +130,9 @@ static const uint32_t borderCategory = 0x1 << 2;
     SKSpriteNode* ball = [SKSpriteNode spriteNodeWithImageNamed: @"ball_white.png"];
     ball.name = @"ball";
     ball.position = CGPointMake(self.frame.size.width/3, self.frame.size.height/2);
-    
+    [self addChild:ball];
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
-    ball.physicsBody.friction = 0.1f;
+    ball.physicsBody.friction = 3.0f;
     ball.physicsBody.restitution = 1.0f;
     ball.physicsBody.linearDamping = 0.1f;
     ball.physicsBody.allowsRotation = NO;
@@ -130,19 +141,15 @@ static const uint32_t borderCategory = 0x1 << 2;
     ball.physicsBody.contactTestBitMask = ballCategory;
     //ball.physicsBody.collisionBitMask = borderCategory;
     
-
-    [self addChild:ball];
-
-    
-    [ball.physicsBody applyImpulse:CGVectorMake(20.0f, 1.5f)];
+    //[ball.physicsBody applyImpulse:CGVectorMake(20.0f, 1.5f)];
     
     
     SKSpriteNode* ball2 = [SKSpriteNode spriteNodeWithImageNamed: @"ball_green.png"];
     ball2.name = @"ball2";
-    ball2.position = CGPointMake(self.frame.size.width/2 + 25, self.frame.size.height/2 + 15);
+    ball2.position = CGPointMake(self.frame.size.width/2 + 27, self.frame.size.height/2 + 16);
     [self addChild:ball2];
     ball2.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball2.frame.size.width/2];
-    ball2.physicsBody.friction = 0.1f;
+    ball2.physicsBody.friction = 3.0f;
     ball2.physicsBody.restitution = 1.0f;
     ball2.physicsBody.linearDamping = 0.1f;
     ball2.physicsBody.allowsRotation = NO;
@@ -155,7 +162,7 @@ static const uint32_t borderCategory = 0x1 << 2;
     ball3.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self addChild:ball3];
     ball3.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball3.frame.size.width/2];
-    ball3.physicsBody.friction = 0.1f;
+    ball3.physicsBody.friction = 3.0f;
     ball3.physicsBody.restitution = 1.0f;
     ball3.physicsBody.linearDamping = 0.1f;
     ball3.physicsBody.allowsRotation = NO;
@@ -165,10 +172,10 @@ static const uint32_t borderCategory = 0x1 << 2;
     
     SKSpriteNode* ball4 = [SKSpriteNode spriteNodeWithImageNamed: @"ball_yellow.png"];
     ball4.name = @"ball4";
-    ball4.position = CGPointMake(self.frame.size.width/2 + 25, self.frame.size.height/2 - 15);
+    ball4.position = CGPointMake(self.frame.size.width/2 + 27, self.frame.size.height/2 - 16);
     [self addChild:ball4];
     ball4.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball4.frame.size.width/2];
-    ball4.physicsBody.friction = 0.1f;
+    ball4.physicsBody.friction = 3.0f;
     ball4.physicsBody.restitution = 1.0f;
     ball4.physicsBody.linearDamping = 0.1f;
     ball4.physicsBody.allowsRotation = NO;
@@ -178,7 +185,7 @@ static const uint32_t borderCategory = 0x1 << 2;
     
     SKSpriteNode *cue = [SKSpriteNode spriteNodeWithImageNamed: @"Cue.png"];
     cue.name = @"Cue";
-    cue.position = CGPointMake(10, self.frame.size.height/2);
+    cue.position = CGPointMake(60, self.frame.size.height/2);
     cue.physicsBody.restitution = 0.9f;
     cue.physicsBody.friction = 0.4f;
     cue.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:cue.frame.size];
@@ -187,18 +194,24 @@ static const uint32_t borderCategory = 0x1 << 2;
     cue.physicsBody.categoryBitMask = cueCategory;
     cue.physicsBody.contactTestBitMask = ballCategory;
     cue.physicsBody.collisionBitMask = ballCategory;
-   
+    
     [self addChild:cue];
-
-    //cue.physicsBody.dynamic = NO;
-    //SKPhysicsJointSpring *cueBall = [SKPhysicsJointSpring jointWithBodyA:cue2 bodyB:ball1 anchorA:CGPointMake(10, self.frame.size.height/2) anchorB:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
-    //SKPhysicsJointPin *cueBall2 = [SKPhysicsJointPin jointWithBodyA:cue2 bodyB:ball1 anchor:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
+    //ball.zRotation = 14;
+    
+    //SKPhysicsJointSpring *cueBall = [SKPhysicsJointSpring jointWithBodyA:cue.physicsBody bodyB:ball.physicsBody anchorA:CGPointMake(10, self.frame.size.height/2) anchorB:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
+    //SKPhysicsJointPin *cueBall2 = [SKPhysicsJointPin jointWithBodyA:ball.physicsBody bodyB:cue.physicsBody anchor:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
     //SKPhysicsJointLimit *cueBall3 = [SKPhysicsJointLimit jointWithBodyA:cue2 bodyB:ball1 anchorA:CGPointMake(10, self.frame.size.height/2) anchorB:CGPointMake(self.frame.size.width/3, self.frame.size.height/2)];
+    
     //[self.physicsWorld addJoint:cueBall2];
+   
     
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    
+    //SKShapeNode* ball = (SKShapeNode*)[self childNodeWithName: @"ball"];
+    //NSLog(@"%f, %f", ball.position.x, ball.position.y);
+    
     /* Called before each frame is rendered */
 }
 
