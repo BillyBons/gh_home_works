@@ -8,8 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate>
-
-@property (nonatomic) BOOL isFingerOnCue;
+@interface GameScene : SKScene
 
 @end

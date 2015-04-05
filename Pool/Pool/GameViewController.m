@@ -9,74 +9,44 @@
 #import "GameViewController.h"
 #import "GameScene.h"
 
-@implementation SKScene (Unarchive)
-
-//+ (instancetype)unarchiveFromFile:(NSString *)file {
-//    /* Retrieve scene file path from the application bundle */
-//    NSString *nodePath = [[NSBundle mainBundle] pathForResource:file ofType:@"sks"];
-//    /* Unarchive the file to an SKScene object */
-//    NSData *data = [NSData dataWithContentsOfFile:nodePath
-//                                          options:NSDataReadingMappedIfSafe
-//                                            error:nil];
-//    NSKeyedUnarchiver *arch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-//    [arch setClass:self forClassName:@"SKScene"];
-//    SKScene *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
-//    [arch finishDecoding];
-//    
-//    return scene;
-//}
-
-@end
-
 @implementation GameViewController
 
 - (void)viewDidLoad
 {
-   
+    [super viewDidLoad];
 }
 
--(void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews
+{
     [super viewWillLayoutSubviews];
     
-    // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
-        skView.showsFPS = YES;
-        skView.showsNodeCount = YES;
-        //skView.showsPhysics = YES;
+        BOOL isDebug = NO;
+        skView.showsFPS = isDebug;
+        skView.showsNodeCount = isDebug;
+        //skView.showsDrawCount = isDebug;
+        skView.showsPhysics = isDebug;
         // Create and configure the scene.
-        SKScene * scene = [GameScene sceneWithSize:skView.bounds.size];
+        SKScene * scene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
         scene.scaleMode = SKSceneScaleModeAspectFill;
-        //scene.anchorPoint = CGPointMake(0, 320);
-        
+        //NSLog(@"Wight: %f", skView.bounds.size.width);
+        //NSLog(@"Height: %f", skView.bounds.size.height);
         // Present the scene.
         [skView presentScene:scene];
     }
+    
 }
 
-- (BOOL)shouldAutorotate
+- (BOOL)prefersStatusBarHidden
 {
     return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        return UIInterfaceOrientationMaskAllButUpsideDown;
-//    } else {
-//        return UIInterfaceOrientationMaskAll;
-//    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
 }
 
 @end
