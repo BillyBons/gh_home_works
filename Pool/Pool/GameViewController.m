@@ -19,7 +19,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
+
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
         BOOL isDebug = NO;
