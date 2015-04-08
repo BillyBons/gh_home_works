@@ -110,7 +110,34 @@ typedef enum GameStatus{
     self.scoreLabel.position = CGPointMake(480, 293);
     self.scoreLabel.fontSize = 20;
     [self addChild:self.scoreLabel];
-    
+ }
+
+-(void)popupFoul{
+    self.foulLabel = [SKLabelNode labelNodeWithText:@"Foul!"];
+    self.foulLabel.name = @"foulLabel";
+    self.foulLabel.fontName = @"SnellRoundhand-Black";
+    self.foulLabel.fontColor = [SKColor colorWithRed:150 green:0 blue:0 alpha:1];
+    self.foulLabel.position = CGPointMake(260, 140);
+    self.foulLabel.fontSize = 40;
+    [self addChild:self.foulLabel];
+    SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 320) duration :2.5];
+    [self.foulLabel runAction: actionMove];
+}
+
+-(void)popupScore{
+    self.popupScoreLabel = [SKLabelNode labelNodeWithText:@"Score +1"];
+    self.popupScoreLabel.name = @"scoreLabel";
+    self.popupScoreLabel.fontName = @"SnellRoundhand-Black";
+    self.popupScoreLabel.fontColor = [SKColor colorWithRed:230 green:230 blue:230 alpha:1];
+    self.popupScoreLabel.position = CGPointMake(260, 140);
+    self.popupScoreLabel.fontSize = 35;
+    [self addChild:self.popupScoreLabel];
+    SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 320) duration :2.5];
+    [self.self.popupScoreLabel runAction: actionMove];
+    int scoreIntValue = [self.scoreValue intValue];
+    self.scoreValue = [NSNumber numberWithInt:scoreIntValue + 1];
+    [self.scoreLabel removeFromParent];
+    [self setupScoreOfPlayer];
 }
 
 #pragma mark TABLE PHYSICS EDGES AND POCKETS
@@ -423,7 +450,6 @@ if ((location.x > 515)&&(location.x < 555)) {
         if (diff < pow(BALL_RADIUS, 2)) {
             return;
         }
-        
     }
     UITouch* touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
@@ -461,7 +487,6 @@ if ((location.x > 515)&&(location.x < 555)) {
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-
     SKPhysicsBody *firstBody;
     SKPhysicsBody *secondBody;
     
@@ -493,57 +518,31 @@ if ((location.x > 515)&&(location.x < 555)) {
         [ball removeFromParent];
    
         if ([ball.physicsBody.node.name isEqualToString:@"whiteBall"]&&![self childNodeWithName:@"foulLabel"]){
-            self.foulLabel = [SKLabelNode labelNodeWithText:@"Foul!"];
-            self.foulLabel.name = @"foulLabel";
-            self.foulLabel.fontName = @"SnellRoundhand-Black";
-            self.foulLabel.fontColor = [SKColor redColor];
-            self.foulLabel.position = CGPointMake(260, 140);
-            self.foulLabel.fontSize = 40;
-            [self addChild:self.foulLabel];
-            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 360) duration :2.5];
-            [self.foulLabel runAction: actionMove];
- 
-//            SKView *skView = (SKView *)self.view;
-//            skView.paused = YES;
-
-        }else if(![self childNodeWithName:@"foulLabel"]/*&&![self childNodeWithName:@"scoreLabel"]*/){
-            self.popupScoreLabel = [SKLabelNode labelNodeWithText:@"Score +1"];
-            self.popupScoreLabel.name = @"scoreLabel";
-            self.popupScoreLabel.fontName = @"SnellRoundhand-Black";
-            self.popupScoreLabel.fontColor = [SKColor colorWithRed:230 green:230 blue:230 alpha:1];
-            self.popupScoreLabel.position = CGPointMake(260, 140);
-            self.popupScoreLabel.fontSize = 35;
-            [self addChild:self.popupScoreLabel];
-            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 285) duration :2.5];
-            [self.self.popupScoreLabel runAction: actionMove];
-            int scoreIntValue = [self.scoreValue intValue];
-            self.scoreValue = [NSNumber numberWithInt:scoreIntValue + 1];
-            [self.scoreLabel removeFromParent];
-            [self setupScoreOfPlayer];
-  
+            [self popupFoul];
+        }else if(![self childNodeWithName:@"foulLabel"]){
+            [self popupScore];
         }
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateWithTimer:) userInfo:nil repeats:NO];
-        
-        //        SKEffectNode *ballEffect = [[SKEffectNode alloc]init];
-        //        SKSpriteNode *ball1 = [SKSpriteNode spriteNodeWithTexture:[TEXTUREATLAS textureNamed:@"redBall"]];
-        //        ball1.position = CGPointMake(278, 160);
-        //        ballEffect.filter = [self blurFilter];
-        //        ballEffect.blendMode = SKBlendModeAdd;
-        //        ballEffect.shouldEnableEffects = YES;
-        //        [ballEffect addChild:ball1];
-        //        [self addChild:ballEffect];
-        
     }
 }
 
 -(void)updateWithTimer:(NSTimer*)timer{
     [self.foulLabel removeFromParent];
     [self.popupScoreLabel removeFromParent];
-//    SKView * skView = (SKView *)self.view;
-//    skView.paused = NO;
     [self.timer invalidate];
     self.timer = nil;
 }
+
+
+//        SKEffectNode *ballEffect = [[SKEffectNode alloc]init];
+//        SKSpriteNode *ball1 = [SKSpriteNode spriteNodeWithTexture:[TEXTUREATLAS textureNamed:@"redBall"]];
+//        ball1.position = CGPointMake(278, 160);
+//        ballEffect.filter = [self blurFilter];
+//        ballEffect.blendMode = SKBlendModeAdd;
+//        ballEffect.shouldEnableEffects = YES;
+//        [ballEffect addChild:ball1];
+//        [self addChild:ballEffect];
+
 
 //-(CIFilter *)blurFilter{
 //    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
@@ -551,5 +550,11 @@ if ((location.x > 515)&&(location.x < 555)) {
 //    [filter setValue:[NSNumber numberWithFloat:10] forKey:@"inputRadius"];
 //    return filter;
 //}
+
+//    SKView * skView = (SKView *)self.view;
+//    skView.paused = NO;
+
+//            SKView *skView = (SKView *)self.view;
+//            skView.paused = YES;
 
 @end
