@@ -126,12 +126,12 @@ typedef enum GameStatus{
         float positionX = 0.0;
         float positionY = 0.0;
         
-        if (i == 0) { sizeA = 1; sizeB = 188; positionX = 36;  positionY = 148;}
-        if (i == 1) { sizeA = 193; sizeB = 1; positionX = 149; positionY = 260;}
-        if (i == 2) { sizeA = 193; sizeB = 1; positionX = 369; positionY = 260;}
-        if (i == 3) { sizeA = 1; sizeB = 188; positionX = 482; positionY = 148;}
-        if (i == 4) { sizeA = 193; sizeB = 1; positionX = 149; positionY = 36; }
-        if (i == 5) { sizeA = 193; sizeB = 1; positionX = 369; positionY = 36; }
+        if (i == 0) { sizeA = 1; sizeB = 188; positionX = 36;  positionY = 148;}        //Left table edge
+        if (i == 1) { sizeA = 193; sizeB = 1; positionX = 149; positionY = 260;}        //Top left table edge
+        if (i == 2) { sizeA = 193; sizeB = 1; positionX = 369; positionY = 260;}        //Top right table edge
+        if (i == 3) { sizeA = 1; sizeB = 188; positionX = 482; positionY = 148;}        //Right table edge
+        if (i == 4) { sizeA = 193; sizeB = 1; positionX = 149; positionY = 36; }        //Bottom left table edge
+        if (i == 5) { sizeA = 193; sizeB = 1; positionX = 369; positionY = 36; }        //Bottom right table edge
 
         SKSpriteNode * insideEdge = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(sizeA, sizeB)];
         insideEdge.position = CGPointMake(positionX, positionY);
@@ -152,14 +152,14 @@ typedef enum GameStatus{
         float positionY = 0.0;
         float zRotationAngle = 0.0;
         
-        if (i == 0) { positionX = 48; positionY = 264; zRotationAngle = M_PI*0.75;}
-        if (i == 1) { positionX = 32; positionY = 247; zRotationAngle = M_PI*0.75;}
-        if (i == 2) { positionX = 32; positionY = 50;  zRotationAngle = M_PI_4;}
-        if (i == 3) { positionX = 48; positionY = 32;  zRotationAngle = M_PI_4;}
-        if (i == 4) { positionX = 470;positionY = 264; zRotationAngle = M_PI_4;}
-        if (i == 5) { positionX = 486;positionY = 247; zRotationAngle = M_PI_4;}
-        if (i == 6) { positionX = 486;positionY = 50;  zRotationAngle = M_PI*0.75;}
-        if (i == 7) { positionX = 470;positionY = 32;  zRotationAngle = M_PI*0.75;}
+        if (i == 0) { positionX = 49; positionY = 264; zRotationAngle = M_PI*0.75;}     //Left top small edge1
+        if (i == 1) { positionX = 31; positionY = 247; zRotationAngle = M_PI*0.75;}     //Left top small edge2
+        if (i == 2) { positionX = 31; positionY = 50;  zRotationAngle = M_PI_4;}        //Left bottom small edge1
+        if (i == 3) { positionX = 49; positionY = 32;  zRotationAngle = M_PI_4;}        //Left bottom small edge2
+        if (i == 4) { positionX = 469;positionY = 264; zRotationAngle = M_PI_4;}        //Right top small edge1
+        if (i == 5) { positionX = 487;positionY = 247; zRotationAngle = M_PI_4;}        //Right top small edge2
+        if (i == 6) { positionX = 487;positionY = 50;  zRotationAngle = M_PI*0.75;}     //Right bottom small edge1
+        if (i == 7) { positionX = 469;positionY = 32;  zRotationAngle = M_PI*0.75;}     //Right bottom small edge2
         
         SKSpriteNode * smallAngularEdge = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(12, 1)];
         smallAngularEdge.position = CGPointMake(positionX, positionY);
@@ -182,10 +182,10 @@ typedef enum GameStatus{
         float positionX = 0.0;
         float positionY = 0.0;
         
-        if (i == 0) { sizeA = 468; sizeB = 1; positionX = 259; positionY = 276; }
-        if (i == 1) { sizeA = 468; sizeB = 1; positionX = 259; positionY = 20;  }
-        if (i == 2) { sizeA = 1; sizeB = 255; positionX = 25;  positionY = 148; }
-        if (i == 3) { sizeA = 1; sizeB = 255; positionX = 493; positionY = 148; }
+        if (i == 0) { sizeA = 250/*468*/; sizeB = 1; positionX = 259; positionY = 276; }  //Top pocket edge
+        if (i == 1) { sizeA = 250/*468*/; sizeB = 1; positionX = 259; positionY = 20;  }  //Bottom pocket edge
+        if (i == 2) { sizeA = 1; sizeB = 255; positionX = 25;  positionY = 148; }         //Left pocket edge
+        if (i == 3) { sizeA = 1; sizeB = 255; positionX = 493; positionY = 148; }         //Right pocket edge
     
         SKSpriteNode * pocketsEdge = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(sizeA, sizeB)];
         pocketsEdge.position = CGPointMake(positionX, positionY);
@@ -271,6 +271,7 @@ typedef enum GameStatus{
     self.cueStick.anchorPoint = CGPointMake(1, 0.5);
     self.cueStick.name = @"cueStick";
     self.cueStick.hidden = YES;
+    self.cueStick.zPosition = 1;
     [self addChild:self.cueStick];
 }
 
@@ -499,12 +500,13 @@ if ((location.x > 515)&&(location.x < 555)) {
             self.foulLabel.position = CGPointMake(260, 140);
             self.foulLabel.fontSize = 40;
             [self addChild:self.foulLabel];
-            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 360) duration :2.0];
+            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 360) duration :2.5];
             [self.foulLabel runAction: actionMove];
  
-            SKView *skView = (SKView *)self.view;
-            skView.paused = YES;
-        }else if(![self childNodeWithName:@"foulLabel"]&&![self childNodeWithName:@"scoreLabel"]){
+//            SKView *skView = (SKView *)self.view;
+//            skView.paused = YES;
+
+        }else if(![self childNodeWithName:@"foulLabel"]/*&&![self childNodeWithName:@"scoreLabel"]*/){
             self.popupScoreLabel = [SKLabelNode labelNodeWithText:@"Score +1"];
             self.popupScoreLabel.name = @"scoreLabel";
             self.popupScoreLabel.fontName = @"SnellRoundhand-Black";
@@ -512,7 +514,7 @@ if ((location.x > 515)&&(location.x < 555)) {
             self.popupScoreLabel.position = CGPointMake(260, 140);
             self.popupScoreLabel.fontSize = 35;
             [self addChild:self.popupScoreLabel];
-            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 285) duration :2.0];
+            SKAction *actionMove = [SKAction moveTo:CGPointMake(260, 285) duration :2.5];
             [self.self.popupScoreLabel runAction: actionMove];
             int scoreIntValue = [self.scoreValue intValue];
             self.scoreValue = [NSNumber numberWithInt:scoreIntValue + 1];
@@ -520,7 +522,7 @@ if ((location.x > 515)&&(location.x < 555)) {
             [self setupScoreOfPlayer];
   
         }
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector(updateWithTimer:) userInfo:nil repeats:NO];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateWithTimer:) userInfo:nil repeats:NO];
         
         //        SKEffectNode *ballEffect = [[SKEffectNode alloc]init];
         //        SKSpriteNode *ball1 = [SKSpriteNode spriteNodeWithTexture:[TEXTUREATLAS textureNamed:@"redBall"]];
@@ -537,8 +539,8 @@ if ((location.x > 515)&&(location.x < 555)) {
 -(void)updateWithTimer:(NSTimer*)timer{
     [self.foulLabel removeFromParent];
     [self.popupScoreLabel removeFromParent];
-    SKView * skView = (SKView *)self.view;
-    skView.paused = NO;
+//    SKView * skView = (SKView *)self.view;
+//    skView.paused = NO;
     [self.timer invalidate];
     self.timer = nil;
 }
