@@ -20,7 +20,7 @@
 {
     [super viewWillLayoutSubviews];
 
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
     if (!skView.scene) {
         BOOL isDebug = NO;
         skView.showsFPS = isDebug;
@@ -28,14 +28,11 @@
         //skView.showsDrawCount = isDebug;
         skView.showsPhysics = isDebug;
         // Create and configure the scene.
-        SKScene * scene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
+        SKScene *scene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
         scene.scaleMode = SKSceneScaleModeAspectFill;
-        //NSLog(@"Wight: %f", skView.bounds.size.width);
-        //NSLog(@"Height: %f", skView.bounds.size.height);
         // Present the scene.
         [skView presentScene:scene];
     }
-    
 }
 
 - (BOOL)prefersStatusBarHidden

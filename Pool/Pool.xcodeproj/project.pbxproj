@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84734FB91ADC07E400878D04 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84734FB81ADC07E400878D04 /* SoundManager.m */; };
 		847E623B1AA9FE7000232A75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E623A1AA9FE7000232A75 /* main.m */; };
 		847E623E1AA9FE7000232A75 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E623D1AA9FE7000232A75 /* AppDelegate.m */; };
 		847E62411AA9FE7000232A75 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E62401AA9FE7000232A75 /* GameScene.m */; };
@@ -16,9 +17,10 @@
 		847E624B1AA9FE7000232A75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847E624A1AA9FE7000232A75 /* Images.xcassets */; };
 		847E624E1AA9FE7000232A75 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847E624C1AA9FE7000232A75 /* LaunchScreen.xib */; };
 		847E625A1AA9FE7000232A75 /* PoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E62591AA9FE7000232A75 /* PoolTests.m */; };
+		84A230731AD70B810078B74C /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A230721AD70B810078B74C /* TextureManager.m */; };
 		84C364281AD00E33007D98C7 /* images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 84C364271AD00E33007D98C7 /* images.atlas */; };
 		84C3642F1AD00F40007D98C7 /* Ball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642A1AD00F40007D98C7 /* Ball.wav */; };
-		84C364301AD00F40007D98C7 /* Bank02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642B1AD00F40007D98C7 /* Bank02.wav */; };
+		84C364301AD00F40007D98C7 /* Edge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642B1AD00F40007D98C7 /* Edge.wav */; };
 		84C364311AD00F40007D98C7 /* Fall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642C1AD00F40007D98C7 /* Fall.wav */; };
 		84C364321AD00F40007D98C7 /* Shot01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642D1AD00F40007D98C7 /* Shot01.wav */; };
 		84C364331AD00F40007D98C7 /* Shot02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84C3642E1AD00F40007D98C7 /* Shot02.wav */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84734FB71ADC07E400878D04 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		84734FB81ADC07E400878D04 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		847E62351AA9FE7000232A75 /* Pool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847E62391AA9FE7000232A75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847E623A1AA9FE7000232A75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,9 +55,11 @@
 		847E62531AA9FE7000232A75 /* PoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		847E62581AA9FE7000232A75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847E62591AA9FE7000232A75 /* PoolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoolTests.m; sourceTree = "<group>"; };
+		84A230711AD70B810078B74C /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		84A230721AD70B810078B74C /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
 		84C364271AD00E33007D98C7 /* images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = images.atlas; sourceTree = "<group>"; };
 		84C3642A1AD00F40007D98C7 /* Ball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Ball.wav; sourceTree = "<group>"; };
-		84C3642B1AD00F40007D98C7 /* Bank02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bank02.wav; sourceTree = "<group>"; };
+		84C3642B1AD00F40007D98C7 /* Edge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Edge.wav; sourceTree = "<group>"; };
 		84C3642C1AD00F40007D98C7 /* Fall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fall.wav; sourceTree = "<group>"; };
 		84C3642D1AD00F40007D98C7 /* Shot01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shot01.wav; sourceTree = "<group>"; };
 		84C3642E1AD00F40007D98C7 /* Shot02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shot02.wav; sourceTree = "<group>"; };
@@ -98,8 +104,7 @@
 		847E62371AA9FE7000232A75 /* Pool */ = {
 			isa = PBXGroup;
 			children = (
-				84C364291AD00F40007D98C7 /* Sounds */,
-				84C364271AD00E33007D98C7 /* images.atlas */,
+				84D9145D1ADC27AC0082E64B /* Managers */,
 				847E623C1AA9FE7000232A75 /* AppDelegate.h */,
 				847E623D1AA9FE7000232A75 /* AppDelegate.m */,
 				847E623F1AA9FE7000232A75 /* GameScene.h */,
@@ -110,6 +115,7 @@
 				847E62471AA9FE7000232A75 /* Main.storyboard */,
 				847E624A1AA9FE7000232A75 /* Images.xcassets */,
 				847E624C1AA9FE7000232A75 /* LaunchScreen.xib */,
+				84D9145C1ADC277E0082E64B /* Resources */,
 				847E62381AA9FE7000232A75 /* Supporting Files */,
 			);
 			path = Pool;
@@ -145,12 +151,32 @@
 			isa = PBXGroup;
 			children = (
 				84C3642A1AD00F40007D98C7 /* Ball.wav */,
-				84C3642B1AD00F40007D98C7 /* Bank02.wav */,
+				84C3642B1AD00F40007D98C7 /* Edge.wav */,
 				84C3642C1AD00F40007D98C7 /* Fall.wav */,
 				84C3642D1AD00F40007D98C7 /* Shot01.wav */,
 				84C3642E1AD00F40007D98C7 /* Shot02.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		84D9145C1ADC277E0082E64B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84C364291AD00F40007D98C7 /* Sounds */,
+				84C364271AD00E33007D98C7 /* images.atlas */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		84D9145D1ADC27AC0082E64B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				84A230711AD70B810078B74C /* TextureManager.h */,
+				84A230721AD70B810078B74C /* TextureManager.m */,
+				84734FB71ADC07E400878D04 /* SoundManager.h */,
+				84734FB81ADC07E400878D04 /* SoundManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +261,7 @@
 			files = (
 				847E624E1AA9FE7000232A75 /* LaunchScreen.xib in Resources */,
 				84C364321AD00F40007D98C7 /* Shot01.wav in Resources */,
-				84C364301AD00F40007D98C7 /* Bank02.wav in Resources */,
+				84C364301AD00F40007D98C7 /* Edge.wav in Resources */,
 				84C3642F1AD00F40007D98C7 /* Ball.wav in Resources */,
 				84C364311AD00F40007D98C7 /* Fall.wav in Resources */,
 				84C364281AD00E33007D98C7 /* images.atlas in Resources */,
@@ -263,6 +289,8 @@
 				847E62461AA9FE7000232A75 /* GameViewController.m in Sources */,
 				847E623E1AA9FE7000232A75 /* AppDelegate.m in Sources */,
 				847E62411AA9FE7000232A75 /* GameScene.m in Sources */,
+				84734FB91ADC07E400878D04 /* SoundManager.m in Sources */,
+				84A230731AD70B810078B74C /* TextureManager.m in Sources */,
 				847E623B1AA9FE7000232A75 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
