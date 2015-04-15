@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8423849E1ADD7B5B00F10CC1 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8423849D1ADD7B5B00F10CC1 /* MainMenu.m */; };
 		84734FB91ADC07E400878D04 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84734FB81ADC07E400878D04 /* SoundManager.m */; };
 		847E623B1AA9FE7000232A75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E623A1AA9FE7000232A75 /* main.m */; };
 		847E623E1AA9FE7000232A75 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E623D1AA9FE7000232A75 /* AppDelegate.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8423849C1ADD7B5B00F10CC1 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		8423849D1ADD7B5B00F10CC1 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
 		84734FB71ADC07E400878D04 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		84734FB81ADC07E400878D04 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		847E62351AA9FE7000232A75 /* Pool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +110,8 @@
 				84D9145D1ADC27AC0082E64B /* Managers */,
 				847E623C1AA9FE7000232A75 /* AppDelegate.h */,
 				847E623D1AA9FE7000232A75 /* AppDelegate.m */,
+				8423849C1ADD7B5B00F10CC1 /* MainMenu.h */,
+				8423849D1ADD7B5B00F10CC1 /* MainMenu.m */,
 				847E623F1AA9FE7000232A75 /* GameScene.h */,
 				847E62401AA9FE7000232A75 /* GameScene.m */,
 				847E62421AA9FE7000232A75 /* GameScene.sks */,
@@ -286,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423849E1ADD7B5B00F10CC1 /* MainMenu.m in Sources */,
 				847E62461AA9FE7000232A75 /* GameViewController.m in Sources */,
 				847E623E1AA9FE7000232A75 /* AppDelegate.m in Sources */,
 				847E62411AA9FE7000232A75 /* GameScene.m in Sources */,

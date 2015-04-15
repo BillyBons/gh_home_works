@@ -13,6 +13,8 @@
 
 + (id)sharedManager;
 
+-(SKTexture*)menuBg;
+
 -(SKTexture*)parket;
 
 -(SKTexture*)pocketBallTable;
@@ -32,5 +34,17 @@
 -(SKTexture*)whiteBall;
 
 -(SKTexture*)yellowBall;
+
+-(SKTexture*)practiceButtonPassive;
+
+-(SKTexture*)practiceButtonActive;
+
+-(SKTexture*)twoPlayersButtonPassive;
+
+-(SKTexture*)twoPlayersButtonActive;
+
+-(SKTexture*)settingsButtonPassive;
+
+-(SKTexture*)settingsButtonActive;
 
 @end

@@ -36,7 +36,11 @@
     self.atlas = [SKTextureAtlas atlasNamed:@"images"];
     return self;
 }
-    
+
+-(SKTexture*)menuBg{
+    return [self.atlas textureNamed:@"menu_bg"];
+}
+
 -(SKTexture*)parket{
     return [self.atlas textureNamed:@"parket"];
 }
@@ -75,6 +79,30 @@
 
 -(SKTexture*)yellowBall{
     return [self.atlas textureNamed:@"yellowBall"];
+}
+
+-(SKTexture*)practiceButtonPassive{
+    return [self.atlas textureNamed:@"practice_p"];
+}
+
+-(SKTexture*)practiceButtonActive{
+    return [self.atlas textureNamed:@"practice_a"];
+}
+
+-(SKTexture*)twoPlayersButtonPassive{
+    return [self.atlas textureNamed:@"2Players_p"];
+}
+
+-(SKTexture*)twoPlayersButtonActive{
+    return [self.atlas textureNamed:@"2Players_a"];
+}
+
+-(SKTexture*)settingsButtonPassive{
+    return [self.atlas textureNamed:@"settings_p"];
+}
+
+-(SKTexture*)settingsButtonActive{
+    return [self.atlas textureNamed:@"settings_a"];
 }
 
 @end

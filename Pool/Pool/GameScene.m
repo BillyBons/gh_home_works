@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "TextureManager.h"
 #import "SoundManager.h"
+#import "MainMenu.h"
 
 typedef NS_OPTIONS (NSInteger, ContactPhysicsBodyes){
     ContactPhysicsBodyEdge = 1 << 0,
@@ -18,6 +19,15 @@ typedef NS_OPTIONS (NSInteger, ContactPhysicsBodyes){
 
 const CGFloat BALL_RADIUS = 10.0f;
 const CGFloat TouchRange = 70;
+const NSInteger leftBoundaryPoolTableTouch = 510;
+const NSInteger topBoundaryPoolTableTouch = 285;
+const NSInteger touchLeftBoundryForGunSight = 27;
+const NSInteger touchRightBoundryForGunSight = 490;
+const NSInteger touchTopBoundryForGunSight = 27;
+const NSInteger touchBottomBoundryForGunSight = 268;
+const NSInteger touchleftBoundarySliderX = 515;
+const NSInteger touchRightBoundarySliderX = 555;
+const CGFloat convertRatioPointToSliderValue = 1.7;
 
 typedef enum GameStatus{
     gameStatusShoot = 1,
@@ -39,19 +49,9 @@ typedef enum GameStatus{
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) BOOL canShoot;
 @property (nonatomic, weak) TextureManager *textureManager;
+@property (nonatomic, assign) BOOL fingerOnMenuButton;
 
 @end
-
-const NSInteger leftBoundaryPoolTableTouch = 510;
-const NSInteger topBoundaryPoolTableTouch = 285;
-const NSInteger touchLeftBoundryForGunSight = 27;
-const NSInteger touchRightBoundryForGunSight = 490;
-const NSInteger touchTopBoundryForGunSight = 27;
-const NSInteger touchBottomBoundryForGunSight = 268;
-const NSInteger touchleftBoundarySliderX = 515;
-const NSInteger touchRightBoundarySliderX = 555;
-const CGFloat convertRatioPointToSliderValue = 1.7;
-
 
 @implementation GameScene
 
@@ -81,24 +81,12 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
     [self setupTablePhysicsEdge];
     [self setupBalls];
     [self setupWhiteBall];
-    [self addSlider];
     [self setupPowerSlider];
     [self setupMenuAndScore];
     [self setupShotOfPowerLabel];
     [self setupScoreOfPlayer];
     [self setupCueStick];
     [self setupGunSight];
-}
-
--(void)addSlider {
-    CGRect frame = CGRectMake(0.0, 0.0, 200.0, 300);
-    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
-    //[slider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
-    [slider setBackgroundColor:[UIColor redColor]];
-    slider.minimumValue = 0.0;
-    slider.maximumValue = 100.0;
-    slider.continuous = YES;
-    [self.view addSubview:slider];
 }
 
 #pragma mark Setup Functions
@@ -390,20 +378,21 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
 }
 
 -(void)setupMenuAndScore {
-    SKShapeNode *menuButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 140, 25)];
-    menuButton.position = CGPointMake(50, 290);
-    menuButton.lineWidth = 1;
-    menuButton.strokeColor = [SKColor blackColor];
-    menuButton.fillColor = [SKColor blackColor];
-    menuButton.alpha = 0.2;
-    [self addChild:menuButton];
-    
-    SKLabelNode *menuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Back to menu", nil) ];
+    SKLabelNode *menuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Back to menu", nil)];
     menuLabel.fontName = @"SnellRoundhand-Black";
     menuLabel.fontColor = [SKColor blackColor];
     menuLabel.position = CGPointMake(120, 295);
     menuLabel.fontSize = 20;
     [self addChild:menuLabel];
+    
+    SKShapeNode *menuButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 140, 25)];
+    menuButton.position = CGPointMake(50, 290);
+    menuButton.name = @"MenuButton";
+    menuButton.lineWidth = 1;
+    menuButton.strokeColor = [SKColor blackColor];
+    menuButton.fillColor = [SKColor blackColor];
+    menuButton.alpha = 0.2;
+    [self addChild:menuButton];
     
     SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Player score:",nil)];
     scoreLabel.fontName = @"SnellRoundhand-Black";
@@ -484,6 +473,14 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
     if (!self.canShoot) {
         return;
     }
+    UITouch *touch = [touches anyObject];
+    SKNode *touchedNode = [self nodeAtPoint:[touch locationInNode:self]];
+    if ([touchedNode.name isEqualToString:@"MenuButton"]) {
+        //self.paused = YES;
+        self.fingerOnMenuButton = YES;
+        touchedNode.alpha = 0.4;
+    }
+    
     for (UITouch* touch in touches) {
         CGPoint location = [touch locationInNode:self];
         float diffx = location.x - self.whiteBall.position.x;
@@ -514,6 +511,7 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
         powerSliderDot.position = CGPointMake(536, powerSliderDotPositionY);
         [self updateShotOfPowerLabel];
     }
+    
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
@@ -566,8 +564,21 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
             return;
         }
     }
+
     UITouch* touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
+    SKNode *touchedNode = [self nodeAtPoint:[touch locationInNode:self]];
+    
+    if (self.fingerOnMenuButton) {
+        SKNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"MenuButton"];
+        touchedNode.alpha = 0.2;
+    }
+    if ([touchedNode.name isEqualToString:@"MenuButton"]) {
+        SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
+        MainMenu *mainMenu = [[MainMenu alloc] initWithSize:CGSizeMake(568, 320)];
+        [self.view presentScene:mainMenu transition:doors];
+    }
+
     if ((self.gameStatus == gameStatusShoot)&&(location.x < leftBoundaryPoolTableTouch)&&(location.y < topBoundaryPoolTableTouch)) {
         [[self childNodeWithName:@"line"] removeFromParent];
         self.gunSight.hidden = YES;
@@ -593,8 +604,8 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
     [self enumerateChildNodesWithName:@"whiteBall" usingBlock:^(SKNode *node, BOOL *stop) {
         if (fabs(node.physicsBody.velocity.dx) <= 1 && fabs(node.physicsBody.velocity.dy) <= 1) {
             self.canShoot = YES;
-            self.cueStick.position = self.whiteBall.position;
             self.cueStick.hidden = NO;
+            self.cueStick.position = self.whiteBall.position;
         }else{
             self.canShoot = NO;
         }
@@ -631,12 +642,15 @@ const CGFloat convertRatioPointToSliderValue = 1.7;
             ball = (SKSpriteNode*)contact.bodyB.node;
         }
         [SoundManager playSoundFall:self];
-
-        [ball removeFromParent];
-   
-        if ([ball.physicsBody.node.name isEqualToString:@"whiteBall"]&&![self childNodeWithName:@"foulLabel"]){
+        if ([ball.physicsBody.node.name isEqualToString:@"whiteBall"]){
             [self popupFoul];
+            [ball removeFromParent];
         }else if(![self childNodeWithName:@"foulLabel"]){
+            ball.physicsBody.dynamic = NO;
+            SKAction *scaleBall = [SKAction scaleTo:0.0 duration:0.1];
+            [ball runAction:scaleBall completion: ^{
+                [ball removeFromParent];
+            }];
             [self popupScore];
         }
     }

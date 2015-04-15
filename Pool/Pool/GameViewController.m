@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
+#import "MainMenu.h"
 
 @implementation GameViewController
 
@@ -27,11 +28,12 @@
         skView.showsNodeCount = isDebug;
         //skView.showsDrawCount = isDebug;
         skView.showsPhysics = isDebug;
-        // Create and configure the scene.
-        SKScene *scene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
-        // Present the scene.
-        [skView presentScene:scene];
+
+        MainMenu *mainMenu = [[MainMenu alloc] initWithSize:CGSizeMake(568, 320)];
+//      SKScene *gameScene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
+//      gameScene.scaleMode = SKSceneScaleModeAspectFill;
+
+        [skView presentScene:mainMenu];
     }
 }
 
