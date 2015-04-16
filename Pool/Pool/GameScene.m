@@ -46,10 +46,17 @@ typedef enum GameStatus{
 @property (nonatomic, strong) NSNumber *scoreValue;
 @property (nonatomic, strong) SKLabelNode *foulLabel;
 @property (nonatomic, strong) SKLabelNode *popupScoreLabel;
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) SKSpriteNode *pauseBg;
+@property (nonatomic, strong) SKLabelNode *popupMenuLabel;
+@property (nonatomic, strong) SKLabelNode *resumeLabel;
+@property (nonatomic, strong) SKLabelNode *backToMenuLabel;
+@property (nonatomic, strong) SKShapeNode *resumeButton;
+@property (nonatomic, strong) SKShapeNode *backToMenuButton;
 @property (nonatomic, assign) BOOL canShoot;
 @property (nonatomic, weak) TextureManager *textureManager;
 @property (nonatomic, assign) BOOL fingerOnMenuButton;
+@property (nonatomic, assign) BOOL fingerOnResumeButton;
+@property (nonatomic, assign) BOOL fingerOnBackToMenuButton;
 
 @end
 
@@ -62,7 +69,7 @@ typedef enum GameStatus{
     }
     return self;
 }
-    
+
 -(void)initContentView {
     self.scoreValue = @0;
     self.powerSliderValue = @100;
@@ -70,7 +77,7 @@ typedef enum GameStatus{
     self.physicsWorld.contactDelegate = self;
     self.textureManager = [TextureManager sharedManager];
 
-    SKSpriteNode *parket = [SKSpriteNode spriteNodeWithTexture:[self.textureManager parket]];
+    SKSpriteNode *parket = [SKSpriteNode spriteNodeWithTexture:[self.textureManager tableBg]];
     parket.position = CGPointMake(self.size.width/2, self.size.height/2);
     [self addChild:parket];
 
@@ -87,6 +94,95 @@ typedef enum GameStatus{
     [self setupScoreOfPlayer];
     [self setupCueStick];
     [self setupGunSight];
+}
+
+- (UIImage *)getBluredScreenshot {
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 1);
+    [self.view drawViewHierarchyInRect:self.view.frame afterScreenUpdates:YES];
+    UIImage *ss = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [gaussianBlurFilter setDefaults];
+    [gaussianBlurFilter setValue:[CIImage imageWithCGImage:[ss CGImage]] forKey:kCIInputImageKey];
+    [gaussianBlurFilter setValue:@3 forKey:kCIInputRadiusKey];
+    
+    CIImage *outputImage = [gaussianBlurFilter outputImage];
+    CIContext *context   = [CIContext contextWithOptions:nil];
+    CGRect rect          = [outputImage extent];
+    rect.origin.x        += (rect.size.width  - ss.size.width ) / 2;
+    rect.origin.y        += (rect.size.height - ss.size.height) / 2;
+    rect.size            = ss.size;
+    CGImageRef cgimg     = [context createCGImage:outputImage fromRect:rect];
+    UIImage *image       = [UIImage imageWithCGImage:cgimg];
+    CGImageRelease(cgimg);
+    return image;
+}
+
+-(void)pause {
+    self.pauseBg = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:[self getBluredScreenshot]]];
+    self.pauseBg.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    self.pauseBg.alpha = 0;
+    self.pauseBg.zPosition = 2;
+    [self.pauseBg runAction:[SKAction fadeAlphaTo:1 duration:0.4]];
+    [self addChild:self.pauseBg];
+}
+
+-(void)popupMenu {
+
+    self.popupMenuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"- Game paused -", nil)];
+    self.popupMenuLabel.fontName = @"SnellRoundhand-Black";
+    self.popupMenuLabel.fontColor = [SKColor redColor];
+    self.popupMenuLabel.position = CGPointMake(self.size.width/2, 210);
+    self.popupMenuLabel.fontSize = 25;
+    self.popupMenuLabel.zPosition = 3;
+    self.popupMenuLabel.alpha = 0.6;
+    [self addChild:self.popupMenuLabel];
+
+    self.resumeLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Resume", nil)];
+    self.resumeLabel.fontName = @"SnellRoundhand-Black";
+    self.resumeLabel.fontColor = [SKColor blackColor];
+    self.resumeLabel.position = CGPointMake(self.size.width/2, 170);
+    self.resumeLabel.fontSize = 25;
+    self.resumeLabel.zPosition = 3;
+    [self addChild:self.resumeLabel];
+    
+    self.resumeButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
+    self.resumeButton.position = CGPointMake(self.size.width/2 - 90, 160);
+    self.resumeButton.name = @"ResumeButton";
+    self.resumeButton.lineWidth = 1;
+    self.resumeButton.strokeColor = [SKColor blackColor];
+    self.resumeButton.fillColor = [SKColor clearColor];
+    self.resumeButton.alpha = 0.5;
+    self.resumeButton.zPosition = 3;
+    [self addChild:self.resumeButton];
+    
+    self.backToMenuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Back to menu", nil)];
+    self.backToMenuLabel.fontName = @"SnellRoundhand-Black";
+    self.backToMenuLabel.fontColor = [SKColor blackColor];
+    self.backToMenuLabel.position = CGPointMake(self.size.width/2, 120);
+    self.backToMenuLabel.fontSize = 25;
+    self.backToMenuLabel.zPosition = 3;
+    [self addChild:self.backToMenuLabel];
+    
+    self.backToMenuButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
+    self.backToMenuButton.position = CGPointMake(self.size.width/2 - 90, 110);
+    self.backToMenuButton.name = @"BackToMenuButton";
+    self.backToMenuButton.lineWidth = 1;
+    self.backToMenuButton.strokeColor = [SKColor blackColor];
+    self.backToMenuButton.fillColor = [SKColor clearColor];
+    self.backToMenuButton.alpha = 0.5;
+    self.backToMenuButton.zPosition = 3;
+    [self addChild:self.backToMenuButton];
+}
+
+-(void)removePopupMenu {
+    [self.pauseBg removeFromParent];
+    [self.popupMenuLabel removeFromParent];
+    [self.resumeLabel removeFromParent];
+    [self.backToMenuLabel removeFromParent];
+    [self.resumeButton removeFromParent];
+    [self.backToMenuButton removeFromParent];
 }
 
 #pragma mark Setup Functions
@@ -371,32 +467,32 @@ typedef enum GameStatus{
     NSString *shotPowerString = [NSString stringWithFormat:@"%@%%",self.powerSliderValue];
     self.shotPowerLabel = [SKLabelNode labelNodeWithText:shotPowerString];
     self.shotPowerLabel.fontName = @"SnellRoundhand-Black";
-    self.shotPowerLabel.fontColor = [SKColor blackColor];
+    self.shotPowerLabel.fontColor = [SKColor whiteColor];
     self.shotPowerLabel.position = CGPointMake(536, 250);
     self.shotPowerLabel.fontSize = 20;
     [self addChild:self.shotPowerLabel];
 }
 
 -(void)setupMenuAndScore {
-    SKLabelNode *menuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Back to menu", nil)];
+    SKLabelNode *menuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Pause", nil)];
     menuLabel.fontName = @"SnellRoundhand-Black";
-    menuLabel.fontColor = [SKColor blackColor];
-    menuLabel.position = CGPointMake(120, 295);
+    menuLabel.fontColor = [SKColor whiteColor];
+    menuLabel.position = CGPointMake(70, 295);
     menuLabel.fontSize = 20;
     [self addChild:menuLabel];
     
-    SKShapeNode *menuButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 140, 25)];
-    menuButton.position = CGPointMake(50, 290);
-    menuButton.name = @"MenuButton";
-    menuButton.lineWidth = 1;
-    menuButton.strokeColor = [SKColor blackColor];
-    menuButton.fillColor = [SKColor blackColor];
-    menuButton.alpha = 0.2;
-    [self addChild:menuButton];
+    SKShapeNode *pauseButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 100, 25)];
+    pauseButton.position = CGPointMake(20, 290);
+    pauseButton.name = @"PauseButton";
+    pauseButton.lineWidth = 1;
+    pauseButton.strokeColor = [SKColor whiteColor];
+    pauseButton.fillColor = [SKColor whiteColor];
+    pauseButton.alpha = 0.2;
+    [self addChild:pauseButton];
     
     SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Player score:",nil)];
     scoreLabel.fontName = @"SnellRoundhand-Black";
-    scoreLabel.fontColor = [SKColor blackColor];
+    scoreLabel.fontColor = [SKColor whiteColor];
     scoreLabel.position = CGPointMake(400, 295);
     scoreLabel.fontSize = 20;
     [self addChild:scoreLabel];
@@ -406,7 +502,7 @@ typedef enum GameStatus{
     NSString *scoreString = [NSString stringWithFormat:@"%@",self.scoreValue];
     self.scoreLabel = [SKLabelNode labelNodeWithText:scoreString];
     self.scoreLabel.fontName = @"SnellRoundhand-Black";
-    self.scoreLabel.fontColor = [SKColor blackColor];
+    self.scoreLabel.fontColor = [SKColor whiteColor];
     self.scoreLabel.position = CGPointMake(480, 293);
     self.scoreLabel.fontSize = 20;
     [self addChild:self.scoreLabel];
@@ -470,15 +566,27 @@ typedef enum GameStatus{
 #pragma mark Handling Touches
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (!self.canShoot) {
-        return;
-    }
     UITouch *touch = [touches anyObject];
-    SKNode *touchedNode = [self nodeAtPoint:[touch locationInNode:self]];
-    if ([touchedNode.name isEqualToString:@"MenuButton"]) {
-        //self.paused = YES;
+    SKShapeNode *touchedNode = (SKShapeNode*)[self nodeAtPoint:[touch locationInNode:self]];
+    if ([touchedNode.name isEqualToString:@"PauseButton"]) {
         self.fingerOnMenuButton = YES;
         touchedNode.alpha = 0.4;
+    }
+    
+    if ([touchedNode.name isEqualToString:@"ResumeButton"]) {
+        self.fingerOnResumeButton = YES;
+        touchedNode.fillColor = [SKColor blackColor];
+        touchedNode.alpha = 0.3;
+    }
+
+    if ([touchedNode.name isEqualToString:@"BackToMenuButton"]) {
+        self.fingerOnBackToMenuButton = YES;
+        touchedNode.fillColor = [SKColor blackColor];
+        touchedNode.alpha = 0.3;
+    }
+    
+    if (!self.canShoot) {
+       return;
     }
     
     for (UITouch* touch in touches) {
@@ -552,6 +660,39 @@ typedef enum GameStatus{
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    UITouch* touch = [touches anyObject];
+    SKNode *touchedNode = [self nodeAtPoint:[touch locationInNode:self]];
+    
+    if (self.fingerOnMenuButton) {
+        SKNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"PauseButton"];
+        touchedNode.alpha = 0.2;
+    }
+    if ([touchedNode.name isEqualToString:@"PauseButton"]) {
+        [self pause];
+        [self popupMenu];
+    }
+ 
+    if (self.fingerOnResumeButton) {
+        SKShapeNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"ResumeButton"];
+        touchedNode.fillColor = [SKColor clearColor];
+        touchedNode.alpha = 0.5;
+    }
+    if ([touchedNode.name isEqualToString:@"ResumeButton"]) {
+        [self removePopupMenu];
+    }
+    
+    if (self.fingerOnBackToMenuButton) {
+        SKShapeNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"BackToMenuButton"];
+        touchedNode.fillColor = [SKColor clearColor];
+        touchedNode.alpha = 0.5;
+    }
+    if ([touchedNode.name isEqualToString:@"BackToMenuButton"]) {
+        SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
+        MainMenu *mainMenu = [[MainMenu alloc] initWithSize:CGSizeMake(568, 320)];
+        [self.view presentScene:mainMenu transition:doors];
+    }
+    
     if (!self.canShoot) {
         return;
     }
@@ -565,19 +706,7 @@ typedef enum GameStatus{
         }
     }
 
-    UITouch* touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
-    SKNode *touchedNode = [self nodeAtPoint:[touch locationInNode:self]];
-    
-    if (self.fingerOnMenuButton) {
-        SKNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"MenuButton"];
-        touchedNode.alpha = 0.2;
-    }
-    if ([touchedNode.name isEqualToString:@"MenuButton"]) {
-        SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
-        MainMenu *mainMenu = [[MainMenu alloc] initWithSize:CGSizeMake(568, 320)];
-        [self.view presentScene:mainMenu transition:doors];
-    }
 
     if ((self.gameStatus == gameStatusShoot)&&(location.x < leftBoundaryPoolTableTouch)&&(location.y < topBoundaryPoolTableTouch)) {
         [[self childNodeWithName:@"line"] removeFromParent];
@@ -602,7 +731,7 @@ typedef enum GameStatus{
 -(void)didSimulatePhysics
 {
     [self enumerateChildNodesWithName:@"whiteBall" usingBlock:^(SKNode *node, BOOL *stop) {
-        if (fabs(node.physicsBody.velocity.dx) <= 1 && fabs(node.physicsBody.velocity.dy) <= 1) {
+        if ((fabs(node.physicsBody.velocity.dx) <= 1 && fabs(node.physicsBody.velocity.dy) <= 1)&&(![self childNodeWithName:@"ResumeButton"])) {
             self.canShoot = YES;
             self.cueStick.hidden = NO;
             self.cueStick.position = self.whiteBall.position;

@@ -15,7 +15,7 @@
 
 -(SKTexture*)menuBg;
 
--(SKTexture*)parket;
+-(SKTexture*)tableBg;
 
 -(SKTexture*)pocketBallTable;
 

@@ -41,8 +41,8 @@
     return [self.atlas textureNamed:@"menu_bg"];
 }
 
--(SKTexture*)parket{
-    return [self.atlas textureNamed:@"parket"];
+-(SKTexture*)tableBg{
+    return [self.atlas textureNamed:@"tableBg"];
 }
 
 -(SKTexture*)pocketBallTable{
