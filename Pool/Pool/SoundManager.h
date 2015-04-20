@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "SettingsManager.h"
 
 @interface SoundManager : SKScene
 

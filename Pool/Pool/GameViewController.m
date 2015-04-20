@@ -30,8 +30,6 @@
         skView.showsPhysics = isDebug;
 
         MainMenu *mainMenu = [[MainMenu alloc] initWithSize:CGSizeMake(568, 320)];
-//      SKScene *gameScene = [GameScene sceneWithSize:CGSizeMake(568, 320)];
-//      gameScene.scaleMode = SKSceneScaleModeAspectFill;
 
         [skView presentScene:mainMenu];
     }

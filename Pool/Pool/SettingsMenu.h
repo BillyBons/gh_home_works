@@ -1,16 +1,16 @@
 //
-//  MainMenu.h
+//  SettingsMenu.h
 //  Pool
 //
-//  Created by Billy on 14.04.15.
+//  Created by Billy on 20.04.15.
 //  Copyright (c) 2015 Billy. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
 #import "TextureManager.h"
-#import "GameScene.h"
-#import "SettingsMenu.h"
+#import "MainMenu.h"
+#import "SettingsManager.h"
 
-@interface MainMenu : SKScene
+@interface SettingsMenu : SKScene
 
 @end

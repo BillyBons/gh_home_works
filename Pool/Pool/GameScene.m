@@ -10,6 +10,7 @@
 #import "TextureManager.h"
 #import "SoundManager.h"
 #import "MainMenu.h"
+#import "SoundManager.h"
 
 typedef NS_OPTIONS (NSInteger, ContactPhysicsBodyes){
     ContactPhysicsBodyEdge = 1 << 0,
@@ -28,6 +29,8 @@ const NSInteger touchBottomBoundryForGunSight = 268;
 const NSInteger touchleftBoundarySliderX = 515;
 const NSInteger touchRightBoundarySliderX = 555;
 const CGFloat convertRatioPointToSliderValue = 1.7;
+
+bool soundState;
 
 typedef enum GameStatus{
     gameStatusShoot = 1,
@@ -54,6 +57,7 @@ typedef enum GameStatus{
 @property (nonatomic, strong) SKShapeNode *backToMenuButton;
 @property (nonatomic, assign) BOOL canShoot;
 @property (nonatomic, weak) TextureManager *textureManager;
+@property (nonatomic, weak) SettingsManager *settingsManager;
 @property (nonatomic, assign) BOOL fingerOnMenuButton;
 @property (nonatomic, assign) BOOL fingerOnResumeButton;
 @property (nonatomic, assign) BOOL fingerOnBackToMenuButton;
@@ -76,10 +80,14 @@ typedef enum GameStatus{
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;
     self.textureManager = [TextureManager sharedManager];
-
-    SKSpriteNode *parket = [SKSpriteNode spriteNodeWithTexture:[self.textureManager tableBg]];
-    parket.position = CGPointMake(self.size.width/2, self.size.height/2);
-    [self addChild:parket];
+    self.settingsManager = [SettingsManager sharedManager];
+    if ([self.settingsManager.soundState  isEqual: @"YES"]) {
+        soundState = YES;
+    }else soundState = NO;
+    
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithTexture:[self.textureManager tableBg]];
+    background.position = CGPointMake(self.size.width/2, self.size.height/2);
+    [self addChild:background];
 
     SKSpriteNode *bgTable = [SKSpriteNode spriteNodeWithTexture:[self.textureManager pocketBallTable]];
     bgTable.position = CGPointMake(self.size.width/2-25, self.size.height/2-12);
@@ -94,6 +102,7 @@ typedef enum GameStatus{
     [self setupScoreOfPlayer];
     [self setupCueStick];
     [self setupGunSight];
+//    [self setupLight];
 }
 
 - (UIImage *)getBluredScreenshot {
@@ -129,7 +138,6 @@ typedef enum GameStatus{
 }
 
 -(void)popupMenu {
-
     self.popupMenuLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"- Game paused -", nil)];
     self.popupMenuLabel.fontName = @"SnellRoundhand-Black";
     self.popupMenuLabel.fontColor = [SKColor redColor];
@@ -186,6 +194,18 @@ typedef enum GameStatus{
 }
 
 #pragma mark Setup Functions
+
+//-(void)setupLight {
+//    SKLightNode* light = [[SKLightNode alloc] init];
+//    light.position = CGPointMake(270, 160);
+//    light.categoryBitMask = ContactPhysicsBodyBall;
+//    light.falloff = 1;
+//    light.ambientColor = [UIColor whiteColor];
+//    light.lightColor = [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:0.5];
+//    light.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+//    light.zPosition = 3;
+//    [self addChild:light];
+//}
 
 -(void)setupTablePhysicsEdge{
     for (int i = 0; i < 6; i++) {
@@ -402,6 +422,7 @@ typedef enum GameStatus{
     self.whiteBall = [SKSpriteNode spriteNodeWithTexture:[self.textureManager whiteBall]];
     self.whiteBall.name = @"whiteBall";
     self.whiteBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.whiteBall.size.width/2];
+//    self.whiteBall.shadowCastBitMask = ContactPhysicsBodyBall;
     self.whiteBall.physicsBody.categoryBitMask = ContactPhysicsBodyBall;
     self.whiteBall.physicsBody.collisionBitMask = ContactPhysicsBodyEdge | ContactPhysicsBodyBall;
     self.whiteBall.physicsBody.contactTestBitMask = ContactPhysicsBodyPocket | ContactPhysicsBodyBall;
@@ -714,9 +735,9 @@ typedef enum GameStatus{
         self.cueStick.hidden = YES;
         int shootPower = [self.powerSliderValue intValue];
         [self.whiteBall.physicsBody applyImpulse:CGVectorMake(cos(self.cueStick.zRotation)*shootPower, sin(self.cueStick.zRotation)*shootPower)];
-        if (shootPower < 33) {
+        if ((shootPower < 33)&&(soundState)) {
             [SoundManager playSoundShot1:self];
-        }else {
+        }else if(soundState){
             [SoundManager playSoundShot2:self];
         }
     }
@@ -757,10 +778,14 @@ typedef enum GameStatus{
     }
     
     if (firstBody.categoryBitMask == ContactPhysicsBodyBall && secondBody.categoryBitMask == ContactPhysicsBodyEdge) {
-        [SoundManager playSoundEdge:self];
+        if (soundState) {
+            [SoundManager playSoundEdge:self];
+        }
     }
     if (firstBody.categoryBitMask == ContactPhysicsBodyBall && secondBody.categoryBitMask == ContactPhysicsBodyBall) {
-        [SoundManager playSoundBall:self];
+        if (soundState) {
+            [SoundManager playSoundBall:self];
+        }
     }
     
     if (firstBody.categoryBitMask == ContactPhysicsBodyPocket && secondBody.categoryBitMask == ContactPhysicsBodyBall) {
@@ -770,7 +795,9 @@ typedef enum GameStatus{
         }else{
             ball = (SKSpriteNode*)contact.bodyB.node;
         }
-        [SoundManager playSoundFall:self];
+        if (soundState) {
+            [SoundManager playSoundFall:self];
+        }
         if ([ball.physicsBody.node.name isEqualToString:@"whiteBall"]){
             [self popupFoul];
             [ball removeFromParent];

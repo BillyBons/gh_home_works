@@ -105,5 +105,10 @@
         SKAction *changeButtonState = [SKAction setTexture:[self.textureManager settingsButtonPassive]];
         [touchedNode runAction:changeButtonState];
     }
+    if ([touchedNode.name isEqualToString:@"Settings"]) {
+        SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
+        SettingsMenu *settingsMenu = [[SettingsMenu alloc] initWithSize:CGSizeMake(568, 320)];
+        [self.view presentScene:settingsMenu transition:doors];
+    }
 }
 @end
