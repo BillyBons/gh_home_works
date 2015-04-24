@@ -26,7 +26,8 @@
     if (!self){
         return nil;
     }
-    self.soundState = @"YES";
+    self.soundEffectsState = YES;
+    self.bgMusicState = YES;
     return self;
 }
 

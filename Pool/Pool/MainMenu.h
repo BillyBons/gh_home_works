@@ -8,8 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "TextureManager.h"
-#import "GameScene.h"
+#import "MultiPlayerGameScene.h"
 #import "SettingsMenu.h"
+#import "SoundManager.h"
+#import "SettingsManager.h"
 
 @interface MainMenu : SKScene
 

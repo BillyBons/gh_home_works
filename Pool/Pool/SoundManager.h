@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SettingsManager.h"
 
 @interface SoundManager : SKScene
+
+@property (nonatomic,strong) AVAudioPlayer *bgPlayer;
+
++(id)sharedManager;
 
 +(void)playSoundShot1:(SKNode*)node;
 

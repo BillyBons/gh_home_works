@@ -13,6 +13,7 @@
 
 +(id)sharedManager;
 
-@property (nonatomic, strong) NSString *soundState;
+@property (nonatomic, assign) BOOL soundEffectsState;
+@property (nonatomic, assign) BOOL bgMusicState;
 
 @end

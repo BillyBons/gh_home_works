@@ -11,14 +11,20 @@
 @interface SettingsMenu()
 
 @property (nonatomic, weak) TextureManager *textureManager;
+@property (nonatomic, weak) SettingsManager *settingsManager;
+@property (nonatomic, weak) SoundManager *soundManager;
 @property (nonatomic, assign) BOOL fingerOnSoundButton;
+@property (nonatomic, assign) BOOL fingerOnMusicButton;
 @property (nonatomic, assign) BOOL fingerOnBackToMenuButton;
 @property (nonatomic, strong) SKLabelNode *backToMenuLabel;
 @property (nonatomic, strong) SKShapeNode *backToMenuButton;
-@property (nonatomic, strong) SKLabelNode *soundLabel;
-@property (nonatomic, strong) SKShapeNode *soundButton;
-@property (nonatomic, weak) SettingsManager *settingsManager;
-@property (nonatomic, strong) NSString *soundLabelText;
+@property (nonatomic, strong) SKLabelNode *soundEffectsLabel;
+@property (nonatomic, strong) SKShapeNode *soundEffectsButton;
+@property (nonatomic, strong) SKLabelNode *bgMusicLabel;
+@property (nonatomic, strong) SKShapeNode *bgMusicButton;
+
+@property (nonatomic, strong) NSString *soundEffectsLabelText;
+@property (nonatomic, strong) NSString *bgMusicLabelText;
 
 @end
 
@@ -27,6 +33,7 @@
 -(void)didMoveToView:(SKView *)view {
     self.textureManager = [TextureManager sharedManager];
     self.settingsManager = [SettingsManager sharedManager];
+    self.soundManager = [SoundManager sharedManager];
     [self createSceneContents];
     [self setupButtons];
 }
@@ -39,28 +46,49 @@
 }
 
 -(void)setupButtons {
-
-    self.soundButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
-    self.soundButton.position = CGPointMake(self.size.width/2 - 90, 90);
-    self.soundButton.name = @"SoundButton";
-    self.soundButton.lineWidth = 1;
-    self.soundButton.strokeColor = [SKColor whiteColor];
-    self.soundButton.fillColor = [SKColor blackColor];
-    self.soundButton.alpha = 0.5;
-    [self addChild:self.soundButton];
+    self.soundEffectsButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
+    self.soundEffectsButton.position = CGPointMake(self.size.width/2 - 90, 78);
+    self.soundEffectsButton.name = @"SoundButton";
+    self.soundEffectsButton.lineWidth = 1;
+    self.soundEffectsButton.strokeColor = [SKColor whiteColor];
+    self.soundEffectsButton.fillColor = [SKColor blackColor];
+    self.soundEffectsButton.alpha = 0.5;
+    [self addChild:self.soundEffectsButton];
     
-    if ([self.settingsManager.soundState  isEqual: @"YES"]) {
-        self.soundLabelText = @"Sound On";
+    if (self.settingsManager.soundEffectsState) {
+        self.soundEffectsLabelText = @"Sound effects On";
     }else {
-        self.soundLabelText = @"Sound Off";
+        self.soundEffectsLabelText = @"Sound effects Off";
     }
-    self.soundLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(self.soundLabelText, nil)];
-    self.soundLabel.fontName = @"SnellRoundhand-Black";
-    self.soundLabel.name = @"SoundLabel";
-    self.soundLabel.fontColor = [SKColor whiteColor];
-    self.soundLabel.position = CGPointMake(self.size.width/2, 100);
-    self.soundLabel.fontSize = 25;
-    [self addChild:self.soundLabel];
+    self.soundEffectsLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(self.soundEffectsLabelText, nil)];
+    self.soundEffectsLabel.fontName = @"SnellRoundhand-Black";
+    self.soundEffectsLabel.name = @"SoundLabel";
+    self.soundEffectsLabel.fontColor = [SKColor whiteColor];
+    self.soundEffectsLabel.position = CGPointMake(self.size.width/2, 88);
+    self.soundEffectsLabel.fontSize = 22;
+    [self addChild:self.soundEffectsLabel];
+    
+    self.bgMusicButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
+    self.bgMusicButton.position = CGPointMake(self.size.width/2 - 90, 130);
+    self.bgMusicButton.name = @"MusicButton";
+    self.bgMusicButton.lineWidth = 1;
+    self.bgMusicButton.strokeColor = [SKColor whiteColor];
+    self.bgMusicButton.fillColor = [SKColor blackColor];
+    self.bgMusicButton.alpha = 0.5;
+    [self addChild:self.bgMusicButton];
+    
+    if (self.settingsManager.bgMusicState) {
+        self.bgMusicLabelText = @"Music On";
+    }else {
+        self.bgMusicLabelText = @"Music Off";
+    }
+    self.bgMusicLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(self.bgMusicLabelText, nil)];
+    self.bgMusicLabel.fontName = @"SnellRoundhand-Black";
+    self.bgMusicLabel.name = @"MusicLabel";
+    self.bgMusicLabel.fontColor = [SKColor whiteColor];
+    self.bgMusicLabel.position = CGPointMake(self.size.width/2, 140);
+    self.bgMusicLabel.fontSize = 22;
+    [self addChild:self.bgMusicLabel];
     
     self.backToMenuButton = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, 180, 35)];
     self.backToMenuButton.position = CGPointMake(self.size.width/2 - 90, 25);
@@ -76,7 +104,7 @@
     self.backToMenuLabel.name = @"BackToMenuLabel";
     self.backToMenuLabel.fontColor = [SKColor whiteColor];
     self.backToMenuLabel.position = CGPointMake(self.size.width/2, 35);
-    self.backToMenuLabel.fontSize = 25;
+    self.backToMenuLabel.fontSize = 22;
     [self addChild:self.backToMenuLabel];
 }
 
@@ -91,8 +119,14 @@
     
     if (([touchedNode.name isEqualToString:@"SoundButton"])||([touchedNode.name isEqualToString:@"SoundLabel"])) {
         self.fingerOnSoundButton = YES;
-        self.soundButton.fillColor = [SKColor whiteColor];
-        self.soundButton.alpha = 0.2;
+        self.soundEffectsButton.fillColor = [SKColor whiteColor];
+        self.soundEffectsButton.alpha = 0.2;
+    }
+    
+    if (([touchedNode.name isEqualToString:@"MusicButton"])||([touchedNode.name isEqualToString:@"MusicLabel"])) {
+        self.fingerOnMusicButton = YES;
+        self.bgMusicButton.fillColor = [SKColor whiteColor];
+        self.bgMusicButton.alpha = 0.2;
     }
 }
 
@@ -117,14 +151,32 @@
         touchedNode.alpha = 0.5;
     }
     if (([touchedNode.name isEqualToString:@"SoundButton"])||([touchedNode.name isEqualToString:@"SoundLabel"])) {
-        if ([self.settingsManager.soundState  isEqual: @"YES"]) {
-            self.soundLabelText = @"Sound Off";
-            self.settingsManager.soundState = @"NO";
+        if (self.settingsManager.soundEffectsState) {
+            self.soundEffectsLabelText = @"Sound effects Off";
+            self.settingsManager.soundEffectsState = NO;
         }else {
-            self.soundLabelText = @"Sound On";
-            self.settingsManager.soundState = @"YES";            
+            self.soundEffectsLabelText = @"Sound effects On";
+            self.settingsManager.soundEffectsState = YES;
         }
-        self.soundLabel.text = self.soundLabelText;
+        self.soundEffectsLabel.text = self.soundEffectsLabelText;
+    }
+    
+    if (self.fingerOnMusicButton) {
+        SKShapeNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"MusicButton"];
+        touchedNode.fillColor = [SKColor blackColor];
+        touchedNode.alpha = 0.5;
+    }
+    if (([touchedNode.name isEqualToString:@"MusicButton"])||([touchedNode.name isEqualToString:@"MusicLabel"])) {
+        if (self.settingsManager.bgMusicState) {
+            self.bgMusicLabelText = @"Music Off";
+            self.settingsManager.bgMusicState = NO;
+            [self.soundManager.bgPlayer stop];
+        }else {
+            self.bgMusicLabelText = @"Music On";
+            self.settingsManager.bgMusicState = YES;
+            [self.soundManager.bgPlayer play];
+        }
+        self.bgMusicLabel.text = self.bgMusicLabelText;
     }
 }
 

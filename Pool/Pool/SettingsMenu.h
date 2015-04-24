@@ -10,6 +10,7 @@
 #import "TextureManager.h"
 #import "MainMenu.h"
 #import "SettingsManager.h"
+#import "SoundManager.h"
 
 @interface SettingsMenu : SKScene
 

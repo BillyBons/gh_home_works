@@ -7,10 +7,13 @@
 //
 
 #import "MainMenu.h"
+#import "Player.h"
 
 @interface MainMenu()
 
 @property (nonatomic, weak) TextureManager *textureManager;
+@property (nonatomic, weak) SoundManager *soundManager;
+@property (nonatomic, weak) SettingsManager *settingsManager;
 @property (nonatomic, assign) BOOL fingerOnPracticeMenuButton;
 @property (nonatomic, assign) BOOL fingerOnTwoPlayersMenuButton;
 @property (nonatomic, assign) BOOL fingerOnSettingsMenuButton;
@@ -21,6 +24,11 @@
 
 -(void)didMoveToView:(SKView *)view {
     self.textureManager = [TextureManager sharedManager];
+    self.soundManager = [SoundManager sharedManager];
+    self.settingsManager = [SettingsManager sharedManager];
+    if (self.settingsManager.bgMusicState) {
+        [self.soundManager.bgPlayer play];
+    }
     [self createSceneContents];
     [self setupPracticeMenuButton];
     [self setupTwoPlayersMenuButton];
@@ -98,6 +106,16 @@
         SKNode *touchedNode = (SKShapeNode*)[self childNodeWithName:@"TwoPlayers"];
         SKAction *changeButtonState = [SKAction setTexture:[self.textureManager twoPlayersButtonPassive]];
         [touchedNode runAction:changeButtonState];
+    }
+    
+    if ([touchedNode.name isEqualToString:@"TwoPlayers"]) {
+        SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
+        Player *player1 = [Player new];
+        Player *player2 = [Player new];
+        player1.name = @"Player 1";
+        player2.name = @"Player 2";
+        MultiPlayerGameScene *gameScene = [[MultiPlayerGameScene alloc] initWithPlayers:@[player1, player2]];
+        [self.view presentScene:gameScene transition:doors];
     }
     
     if (self.fingerOnSettingsMenuButton) {
