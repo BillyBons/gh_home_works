@@ -20,7 +20,7 @@
 -(void)popupMenuBack;
 -(void)yellowBallFallInPocket:(SKSpriteNode*)ball;
 -(void)redBallFallInPocket:(SKSpriteNode*)ball;
--(void)whiteBallStopped;
+-(void)whiteBallStopMoving;
 
 
 

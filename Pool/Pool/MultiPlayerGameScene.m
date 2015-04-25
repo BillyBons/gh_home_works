@@ -29,8 +29,6 @@
 
 -(id)initWithPlayers:(NSMutableArray*)players {
     self = [super initWithSize:CGSizeMake(568, 320)];
-    super.ballFallIntoPocket = YES;
-    self.ballIntoPocket = YES;
     self.player1Score = @0;
     self.player2Score = @0;
     self.players = players;
@@ -40,19 +38,7 @@
     return self;
 }
 
--(void)visualisationCurrentPlayer {
-    if ([self.currentPlayer.name isEqualToString:@"Player 1"]) {
-        self.player2Label.alpha = 0.5;
-        self.score2Label.alpha = 0.5;
-        self.player1Label.alpha = 1.0;
-        self.score1Label.alpha = 1.0;
-    }else if ([self.currentPlayer.name isEqualToString:@"Player 2"]) {
-        self.player1Label.alpha = 0.5;
-        self.score1Label.alpha = 0.5;
-        self.player2Label.alpha = 1.0;
-        self.score2Label.alpha = 1.0;
-    }
-}
+#pragma mark Setup Functions
 
 -(void)setupPlayerNameAndScore {
     SKLabelNode *player1NameLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"Player 1",nil)];
@@ -93,21 +79,19 @@
     [self updateScoreOfPlayer];
 }
 
--(void)updateScoreOfPlayer {
-    if ([self.currentPlayer.name isEqualToString:@"Player 1"]) {
-        self.score1Label.text = [NSString stringWithFormat:@"score: %@",self.player1Score];
-    }else if ([self.currentPlayer.name isEqualToString:@"Player 2"]) {
-        self.score2Label.text = [NSString stringWithFormat:@"score: %@",self.player2Score];
-    }
-}
+//UNDER CONSTRACTION
 
-//-(void)whiteBallStopped {
-//    [super whiteBallStopped];
-//    if ((!super.ballFallIntoPocket)&&(self.ballIntoPocket)) {
+//-(void)whiteBallStopMoving {
+//    [super whiteBallStopMoving];
+//    if ((super.ballFallIntoPocket)&&(self.ballIntoPocket)) {
 //        [self selectNextPlayer];
-//        self.ballFallIntoPocket = NO;
+//        self.ballIntoPocket = YES;
+//        super.ballFallIntoPocket = NO;
+//
 //    }
 //}
+
+#pragma mark Handling balls in poket ivents
 
 -(void)whiteBallFallInPocket:(SKSpriteNode*)ball {
     [super whiteBallFallInPocket:ball];
@@ -210,6 +194,8 @@
     }
 }
 
+#pragma mark Update & Popup Functions
+
 -(void)playerLooseLabel {
     SKLabelNode *popupLooseLabel = [SKLabelNode labelNodeWithText:NSLocalizedString(@"You LOOSE!", nil)];
     popupLooseLabel.fontName = @"SnellRoundhand-Black";
@@ -264,6 +250,28 @@
     [playerPopupLabel runAction: sequence completion:^{
         [playerPopupLabel removeFromParent];
     }];
+}
+
+-(void)visualisationCurrentPlayer {
+    if ([self.currentPlayer.name isEqualToString:@"Player 1"]) {
+        self.player2Label.alpha = 0.5;
+        self.score2Label.alpha = 0.5;
+        self.player1Label.alpha = 1.0;
+        self.score1Label.alpha = 1.0;
+    }else if ([self.currentPlayer.name isEqualToString:@"Player 2"]) {
+        self.player1Label.alpha = 0.5;
+        self.score1Label.alpha = 0.5;
+        self.player2Label.alpha = 1.0;
+        self.score2Label.alpha = 1.0;
+    }
+}
+
+-(void)updateScoreOfPlayer {
+    if ([self.currentPlayer.name isEqualToString:@"Player 1"]) {
+        self.score1Label.text = [NSString stringWithFormat:@"score: %@",self.player1Score];
+    }else if ([self.currentPlayer.name isEqualToString:@"Player 2"]) {
+        self.score2Label.text = [NSString stringWithFormat:@"score: %@",self.player2Score];
+    }
 }
 
 -(void)selectNext {

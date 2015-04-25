@@ -86,15 +86,8 @@ typedef enum GameStatus{
     if (self.settingsManager.soundEffectsState) {
         soundEffectsState = YES;
     }else soundEffectsState = NO;
-    
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithTexture:[self.textureManager tableBg]];
-    background.position = CGPointMake(self.size.width/2, self.size.height/2);
-    [self addChild:background];
 
-    SKSpriteNode *bgTable = [SKSpriteNode spriteNodeWithTexture:[self.textureManager pocketBallTable]];
-    bgTable.position = CGPointMake(self.size.width/2-25, self.size.height/2-12);
-    [self addChild:bgTable];
-
+    [self setupBackgrounds];
     [self setupTablePhysicsEdge];
     [self setupBalls];
     [self setupWhiteBall];
@@ -200,6 +193,16 @@ typedef enum GameStatus{
 
 #pragma mark Setup Functions
 
+-(void)setupBackgrounds {
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithTexture:[self.textureManager tableBg]];
+    background.position = CGPointMake(self.size.width/2, self.size.height/2);
+    [self addChild:background];
+    
+    SKSpriteNode *bgTable = [SKSpriteNode spriteNodeWithTexture:[self.textureManager pocketBallTable]];
+    bgTable.position = CGPointMake(self.size.width/2-25, self.size.height/2-12);
+    [self addChild:bgTable];
+}
+
 -(void)setupTablePhysicsEdge{
     for (int i = 0; i < 6; i++) {
         float sizeA = 0.0;
@@ -207,37 +210,37 @@ typedef enum GameStatus{
         float positionX = 0.0;
         float positionY = 0.0;
         switch (i) {
-            case 0:                 //Left table edge
+            case 0:
                 sizeA = 1;
                 sizeB = 188;
                 positionX = 36;
                 positionY = 148;
                 break;
-            case 1:                 //Top left table edge
+            case 1:
                 sizeA = 193;
                 sizeB = 1;
                 positionX = 149;
                 positionY = 260;
                 break;
-            case 2:                 //Top right table edge
+            case 2:
                 sizeA = 193;
                 sizeB = 1;
                 positionX = 369;
                 positionY = 260;
                 break;
-            case 3:                 //Right table edge
+            case 3:
                 sizeA = 1;
                 sizeB = 188;
                 positionX = 482;
                 positionY = 148;
                 break;
-            case 4:                 //Bottom left table edge
+            case 4:
                 sizeA = 193;
                 sizeB = 1;
                 positionX = 149;
                 positionY = 36;
                 break;
-            case 5:                 //Bottom right table edge
+            case 5:
                 sizeA = 193;
                 sizeB = 1;
                 positionX = 369;
@@ -264,42 +267,42 @@ typedef enum GameStatus{
         float zRotationAngle = 0.0;
 
         switch (i) {
-            case 0:                 //Left top small edge1
+            case 0:
                 positionX = 49;
                 positionY = 264;
                 zRotationAngle = M_PI*0.75;
                 break;
-            case 1:                 //Left top small edge2
+            case 1:
                 positionX = 31;
                 positionY = 247;
                 zRotationAngle = M_PI*0.75;
                 break;
-            case 2:                 //Left bottom small edge1
+            case 2:
                 positionX = 31;
                 positionY = 50;
                 zRotationAngle = M_PI_4;
                 break;
-            case 3:                 //Left bottom small edge2
+            case 3:
                 positionX = 49;
                 positionY = 32;
                 zRotationAngle = M_PI_4;
                 break;
-            case 4:                 //Right top small edge1
+            case 4:
                 positionX = 469;
                 positionY = 264;
                 zRotationAngle = M_PI_4;
                 break;
-            case 5:                 //Right top small edge2
+            case 5:
                 positionX = 487;
                 positionY = 247;
                 zRotationAngle = M_PI_4;
                 break;
-            case 6:                 //Right bottom small edge1
+            case 6:
                 positionX = 487;
                 positionY = 50;
                 zRotationAngle = M_PI*0.75;
                 break;
-            case 7:                 //Right bottom small edge2
+            case 7:
                 positionX = 469;
                 positionY = 32;
                 zRotationAngle = M_PI*0.75;
@@ -325,25 +328,25 @@ typedef enum GameStatus{
         float positionX = 0.0;
         float positionY = 0.0;
         switch (i) {
-            case 0:                 //Top pocket edge
+            case 0:
                 sizeA = 250;
                 sizeB = 1;
                 positionX = 259;
                 positionY = 276;
                 break;
-            case 1:                 //Bottom pocket edge
+            case 1:
                 sizeA = 250;
                 sizeB = 1;
                 positionX = 259;
                 positionY = 20;
                 break;
-            case 2:                 //Left pocket edge
+            case 2:
                 sizeA = 1;
                 sizeB = 265;
                 positionX = 26;
                 positionY = 148;
                 break;
-            case 3:                 //Right pocket edge
+            case 3:
                 sizeA = 1;
                 sizeB = 265;
                 positionX = 492;
@@ -767,14 +770,14 @@ typedef enum GameStatus{
 -(void)didSimulatePhysics {
     [self enumerateChildNodesWithName:@"whiteBall" usingBlock:^(SKNode *node, BOOL *stop) {
         if ((fabs(node.physicsBody.velocity.dx) <= 1 && fabs(node.physicsBody.velocity.dy) <= 1)&&(![self childNodeWithName:@"ResumeButton"])) {
-            [self whiteBallStopped];
+            [self whiteBallStopMoving];
         }else{
             self.canShoot = NO;
         }
     }];
 }
 
--(void)whiteBallStopped {
+-(void)whiteBallStopMoving {
     self.canShoot = YES;
     self.cueStick.hidden = NO;
     self.cueStick.position = self.whiteBall.position;
