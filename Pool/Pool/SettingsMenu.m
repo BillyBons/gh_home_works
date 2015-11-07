@@ -38,6 +38,8 @@
     [self setupButtons];
 }
 
+#pragma mark Setup Scene Contents
+
 -(void)createSceneContents {
     self.scaleMode = SKSceneScaleModeAspectFill;
     SKSpriteNode *menuBg = [SKSpriteNode spriteNodeWithTexture:[self.textureManager menuBg]];
@@ -108,6 +110,8 @@
     [self addChild:self.backToMenuLabel];
 }
 
+#pragma mark Handling touches
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     SKShapeNode *touchedNode = (SKShapeNode*)[self nodeAtPoint:[touch locationInNode:self]];
@@ -170,7 +174,7 @@
         if (self.settingsManager.bgMusicState) {
             self.bgMusicLabelText = @"Music Off";
             self.settingsManager.bgMusicState = NO;
-            [self.soundManager.bgPlayer stop];
+            [self.soundManager.bgPlayer pause];
         }else {
             self.bgMusicLabelText = @"Music On";
             self.settingsManager.bgMusicState = YES;

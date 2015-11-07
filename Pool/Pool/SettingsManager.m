@@ -27,7 +27,7 @@
         return nil;
     }
     self.soundEffectsState = YES;
-    self.bgMusicState = YES;
+    self.bgMusicState = NO;
     return self;
 }
 

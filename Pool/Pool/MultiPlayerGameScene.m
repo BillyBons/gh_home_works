@@ -7,7 +7,6 @@
 //
 
 #import "MultiPlayerGameScene.h"
-#import "Player.h"
 
 @interface MultiPlayerGameScene()
 
@@ -21,7 +20,7 @@
 @property (nonatomic, strong) NSString *player2Color;
 @property (nonatomic, strong) NSNumber *player1Score;
 @property (nonatomic, strong) NSNumber *player2Score;
-@property BOOL ballIntoPocket;
+//@property BOOL ballIntoPocket;
 
 @end
 

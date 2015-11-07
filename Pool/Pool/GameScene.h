@@ -7,12 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SetupScene.h"
 
-@interface GameScene : SKScene
+
+@interface GameScene : SetupScene
 
 @property BOOL ballFallIntoPocket;
 
--(void)setupPlayerNameAndScore;
 -(void)whiteBallFallInPocket:(SKSpriteNode*)ball;
 -(void)blackBallFallInPocket:(SKSpriteNode*)ball;
 -(void)updateScoreOfPlayer;

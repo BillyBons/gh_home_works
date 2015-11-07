@@ -20,6 +20,7 @@
 		847E624E1AA9FE7000232A75 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847E624C1AA9FE7000232A75 /* LaunchScreen.xib */; };
 		847E625A1AA9FE7000232A75 /* PoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E62591AA9FE7000232A75 /* PoolTests.m */; };
 		84882E761AE4DEC80056082F /* SettingsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84882E751AE4DEC80056082F /* SettingsMenu.m */; };
+		84919D6D1BECC2E100DB847F /* SetupScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84919D6C1BECC2E100DB847F /* SetupScene.m */; };
 		84A230731AD70B810078B74C /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A230721AD70B810078B74C /* TextureManager.m */; };
 		84B3F8251AE7FE6F007B809C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B3F8241AE7FE6F007B809C /* Player.m */; };
 		84B3F8281AE802AA007B809C /* MultiPlayerGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B3F8271AE802AA007B809C /* MultiPlayerGameScene.m */; };
@@ -66,6 +67,8 @@
 		847E62591AA9FE7000232A75 /* PoolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoolTests.m; sourceTree = "<group>"; };
 		84882E741AE4DEC80056082F /* SettingsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenu.h; sourceTree = "<group>"; };
 		84882E751AE4DEC80056082F /* SettingsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenu.m; sourceTree = "<group>"; };
+		84919D6B1BECC2E100DB847F /* SetupScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupScene.h; sourceTree = "<group>"; };
+		84919D6C1BECC2E100DB847F /* SetupScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupScene.m; sourceTree = "<group>"; };
 		84A230711AD70B810078B74C /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		84A230721AD70B810078B74C /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
 		84B3F8231AE7FE6F007B809C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				8423849D1ADD7B5B00F10CC1 /* MainMenu.m */,
 				84882E741AE4DEC80056082F /* SettingsMenu.h */,
 				84882E751AE4DEC80056082F /* SettingsMenu.m */,
+				84919D6B1BECC2E100DB847F /* SetupScene.h */,
+				84919D6C1BECC2E100DB847F /* SetupScene.m */,
 				847E623F1AA9FE7000232A75 /* GameScene.h */,
 				847E62401AA9FE7000232A75 /* GameScene.m */,
 				84B3F8261AE802AA007B809C /* MultiPlayerGameScene.h */,
@@ -251,7 +256,7 @@
 		847E622D1AA9FE7000232A75 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Billy;
 				TargetAttributes = {
 					847E62341AA9FE7000232A75 = {
@@ -325,6 +330,7 @@
 				84734FB91ADC07E400878D04 /* SoundManager.m in Sources */,
 				84A230731AD70B810078B74C /* TextureManager.m in Sources */,
 				847E623B1AA9FE7000232A75 /* main.m in Sources */,
+				84919D6D1BECC2E100DB847F /* SetupScene.m in Sources */,
 				84882E761AE4DEC80056082F /* SettingsMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +393,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -401,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -436,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -450,6 +457,7 @@
 				INFOPLIST_FILE = Pool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ex.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -461,6 +469,7 @@
 				INFOPLIST_FILE = Pool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ex.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -479,6 +488,7 @@
 				);
 				INFOPLIST_FILE = PoolTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ex.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pool.app/Pool";
 			};
@@ -494,6 +504,7 @@
 				);
 				INFOPLIST_FILE = PoolTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ex.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pool.app/Pool";
 			};

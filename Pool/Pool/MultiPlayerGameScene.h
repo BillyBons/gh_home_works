@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+#import "Player.h"
 
 @interface MultiPlayerGameScene : GameScene
 

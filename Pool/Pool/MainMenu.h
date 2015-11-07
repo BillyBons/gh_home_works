@@ -12,6 +12,7 @@
 #import "SettingsMenu.h"
 #import "SoundManager.h"
 #import "SettingsManager.h"
+#import "Player.h"
 
 @interface MainMenu : SKScene
 
