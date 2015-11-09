@@ -20,7 +20,6 @@
 @property (nonatomic, strong) NSString *player2Color;
 @property (nonatomic, strong) NSNumber *player1Score;
 @property (nonatomic, strong) NSNumber *player2Score;
-//@property BOOL ballIntoPocket;
 
 @end
 
@@ -78,17 +77,13 @@
     [self updateScoreOfPlayer];
 }
 
-//UNDER CONSTRACTION
-
-//-(void)whiteBallStopMoving {
-//    [super whiteBallStopMoving];
-//    if ((super.ballFallIntoPocket)&&(self.ballIntoPocket)) {
-//        [self selectNextPlayer];
-//        self.ballIntoPocket = YES;
-//        super.ballFallIntoPocket = NO;
-//
-//    }
-//}
+-(void)whiteBallStopMoving {
+    [super whiteBallStopMoving];
+    if ((!super.ballIntoPocket)&&(!super.firstHit)) {
+        [self selectNextPlayer];
+        super.ballIntoPocket = YES;
+    }
+}
 
 #pragma mark Handling balls in poket ivents
 

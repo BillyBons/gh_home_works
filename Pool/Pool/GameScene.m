@@ -54,6 +54,7 @@ typedef enum GameStatus{
 @property (nonatomic, assign) BOOL fingerOnMenuButton;
 @property (nonatomic, assign) BOOL fingerOnResumeButton;
 @property (nonatomic, assign) BOOL fingerOnBackToMenuButton;
+@property BOOL ballFallIntoPocket;
 
 @end
 
@@ -68,6 +69,10 @@ typedef enum GameStatus{
 }
 
 -(void)initContentView {
+    
+    self.ballIntoPocket = NO;
+    self.firstHit = YES;
+    
     self.scoreValue = @0;
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     self.physicsWorld.contactDelegate = self;
@@ -377,6 +382,8 @@ typedef enum GameStatus{
         self.cueStick.hidden = YES;
         int shootPower = [self.powerSliderValue intValue];
         [self.whiteBall.physicsBody applyImpulse:CGVectorMake(cos(self.cueStick.zRotation)*shootPower, sin(self.cueStick.zRotation)*shootPower)];
+        self.firstHit = NO;
+        self.ballIntoPocket = NO;
         if ((shootPower < 33)&&(soundEffectsState)) {
             [SoundManager playSoundShot1:self];
         }else if(soundEffectsState){
@@ -426,6 +433,7 @@ typedef enum GameStatus{
     }
 }
 -(void)ballFallInPocket:(SKSpriteNode*)ball {
+    self.ballIntoPocket = YES;
     if (soundEffectsState) {
         [SoundManager playSoundFall:self];
     }

@@ -12,7 +12,8 @@
 
 @interface GameScene : SetupScene
 
-@property BOOL ballFallIntoPocket;
+@property BOOL ballIntoPocket;
+@property BOOL firstHit;
 
 -(void)whiteBallFallInPocket:(SKSpriteNode*)ball;
 -(void)blackBallFallInPocket:(SKSpriteNode*)ball;
@@ -22,7 +23,5 @@
 -(void)yellowBallFallInPocket:(SKSpriteNode*)ball;
 -(void)redBallFallInPocket:(SKSpriteNode*)ball;
 -(void)whiteBallStopMoving;
-
-
 
 @end
