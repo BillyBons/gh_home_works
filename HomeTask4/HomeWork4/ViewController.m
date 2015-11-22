@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController ()
 
 @end
 

@@ -30,7 +30,7 @@
     self.webView = webView;
     [webView release];
     
-    NSString *urlPath = [NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@", self.deviceName];
+    NSString *urlPath = [NSString stringWithFormat:@"https://en.wikipedia.org/wiki/%@", self.deviceName];
     urlPath = [urlPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *url = [NSURL URLWithString:urlPath];

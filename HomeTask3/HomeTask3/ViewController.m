@@ -25,29 +25,29 @@
     [super viewDidLoad];
 
 	//Инициализация массива на пряму не до пропертей а до змінних можна замінити на self.
-	_cars = [[NSArray alloc] initWithObjects:@"Toyota", @"Subaru", @"BMW", @"Mercedes", nil];
-	_bikes = [[NSArray alloc] initWithObjects:@"Suzuki",@"Honda",@"Kawasaki",@"Yamaha",nil];
+	self.cars = [[NSArray alloc] initWithObjects:@"Toyota", @"Subaru", @"BMW", @"Mercedes", nil];
+	self.bikes = [[NSArray alloc] initWithObjects:@"Suzuki",@"Honda",@"Kawasaki",@"Yamaha",nil];
 
 
-	//Додаєм програмну
+	//Додаєм програмну табличку
 	[self addTableView];
 }
 - (void) addTableView {
-	_codeTable = [[UITableView alloc] init];
+	self.codeTable = [UITableView new];
 	CGRect halfFrame = self.view.frame;
 	halfFrame.size.width = halfFrame.size.width/2;
 	halfFrame.origin.x = halfFrame.size.width;
-	_codeTable.frame = halfFrame;
-	_codeTable.dataSource = self;
+	self.codeTable.frame = halfFrame;
+	self.codeTable.dataSource = self;
 	
-	[self.view addSubview:_codeTable];
+	[self.view addSubview:self.codeTable];
 }
 
 - (NSArray *) arrayForTableView:(UITableView *)table {
-	if (table == _codeTable) {
-		return _cars;
+	if (table == self.codeTable) {
+		return self.cars;
 	}
-	return _bikes;
+	return self.bikes;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
