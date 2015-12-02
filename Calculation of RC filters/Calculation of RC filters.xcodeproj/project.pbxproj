@@ -15,6 +15,12 @@
 		849070E11C01B34700CB6D8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849070DF1C01B34700CB6D8A /* LaunchScreen.storyboard */; };
 		849070EC1C01B34700CB6D8A /* Calculation_of_RC_filtersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 849070EB1C01B34700CB6D8A /* Calculation_of_RC_filtersTests.m */; };
 		849070F71C01B34700CB6D8A /* Calculation_of_RC_filtersUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 849070F61C01B34700CB6D8A /* Calculation_of_RC_filtersUITests.m */; };
+		84BD07051C0872CA000AE297 /* high_pass_filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07031C0872CA000AE297 /* high_pass_filter.png */; };
+		84BD07061C0872CA000AE297 /* low_pass_filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07041C0872CA000AE297 /* low_pass_filter.png */; };
+		84BD070A1C08BF37000AE297 /* hipass_graph_cr.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07081C08BF37000AE297 /* hipass_graph_cr.png */; };
+		84BD070B1C08BF37000AE297 /* lowpass_graph_cr.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07091C08BF37000AE297 /* lowpass_graph_cr.png */; };
+		84BD07141C08D567000AE297 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07121C08D567000AE297 /* bg.png */; };
+		84BD07151C08D567000AE297 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BD07131C08D567000AE297 /* bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,12 @@
 		849070F21C01B34700CB6D8A /* Calculation of RC filtersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calculation of RC filtersUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		849070F61C01B34700CB6D8A /* Calculation_of_RC_filtersUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calculation_of_RC_filtersUITests.m; sourceTree = "<group>"; };
 		849070F81C01B34700CB6D8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BD07031C0872CA000AE297 /* high_pass_filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = high_pass_filter.png; sourceTree = "<group>"; };
+		84BD07041C0872CA000AE297 /* low_pass_filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_pass_filter.png; sourceTree = "<group>"; };
+		84BD07081C08BF37000AE297 /* hipass_graph_cr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hipass_graph_cr.png; sourceTree = "<group>"; };
+		84BD07091C08BF37000AE297 /* lowpass_graph_cr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowpass_graph_cr.png; sourceTree = "<group>"; };
+		84BD07121C08D567000AE297 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		84BD07131C08D567000AE297 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,7 @@
 		849070D01C01B34700CB6D8A /* Calculation of RC filters */ = {
 			isa = PBXGroup;
 			children = (
+				84BD07071C0872D4000AE297 /* Pictures */,
 				849070D41C01B34700CB6D8A /* AppDelegate.h */,
 				849070D51C01B34700CB6D8A /* AppDelegate.m */,
 				849070D71C01B34700CB6D8A /* ViewController.h */,
@@ -138,6 +151,19 @@
 				849070F81C01B34700CB6D8A /* Info.plist */,
 			);
 			path = "Calculation of RC filtersUITests";
+			sourceTree = "<group>";
+		};
+		84BD07071C0872D4000AE297 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				84BD07121C08D567000AE297 /* bg.png */,
+				84BD07131C08D567000AE297 /* bg@2x.png */,
+				84BD07081C08BF37000AE297 /* hipass_graph_cr.png */,
+				84BD07091C08BF37000AE297 /* lowpass_graph_cr.png */,
+				84BD07041C0872CA000AE297 /* low_pass_filter.png */,
+				84BD07031C0872CA000AE297 /* high_pass_filter.png */,
+			);
+			name = Pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,9 +269,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BD07151C08D567000AE297 /* bg@2x.png in Resources */,
 				849070E11C01B34700CB6D8A /* LaunchScreen.storyboard in Resources */,
 				849070DE1C01B34700CB6D8A /* Assets.xcassets in Resources */,
+				84BD07141C08D567000AE297 /* bg.png in Resources */,
+				84BD070B1C08BF37000AE297 /* lowpass_graph_cr.png in Resources */,
+				84BD07051C0872CA000AE297 /* high_pass_filter.png in Resources */,
 				849070DC1C01B34700CB6D8A /* Main.storyboard in Resources */,
+				84BD07061C0872CA000AE297 /* low_pass_filter.png in Resources */,
+				84BD070A1C08BF37000AE297 /* hipass_graph_cr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +528,7 @@
 				849070FD1C01B34700CB6D8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849070FE1C01B34700CB6D8A /* Build configuration list for PBXNativeTarget "Calculation of RC filtersTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +537,7 @@
 				849071001C01B34700CB6D8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849071011C01B34700CB6D8A /* Build configuration list for PBXNativeTarget "Calculation of RC filtersUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +546,7 @@
 				849071031C01B34700CB6D8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

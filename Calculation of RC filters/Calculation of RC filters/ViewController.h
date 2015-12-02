@@ -10,6 +10,17 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIButton *calculateButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetButton;
+@property (strong, nonatomic) IBOutlet UILabel *resultLabel;
+
+@property (strong, nonatomic) IBOutlet UITextField *cutOffFreqLabel;
+@property (strong, nonatomic) IBOutlet UITextField *resistorLabel;
+@property (strong, nonatomic) IBOutlet UITextField *capacitorLabel;
+
+@property (strong, nonatomic) IBOutlet UISwitch *freqChangedSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *resistorChangedSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *capacitorChangedSwitch;
 
 @end
 

@@ -2,7 +2,7 @@
 //  SettingsMenu.m
 //  Pool
 //
-//  Created by Billy on 20.04.15.
+//  Created by Billy on 12.04.15.
 //  Copyright (c) 2015 Billy. All rights reserved.
 //
 
